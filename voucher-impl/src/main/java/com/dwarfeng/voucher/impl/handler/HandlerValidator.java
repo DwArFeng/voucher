@@ -5,10 +5,9 @@ import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
 import com.dwarfeng.subgrade.stack.exception.HandlerException;
 import com.dwarfeng.subgrade.stack.exception.ServiceException;
 import com.dwarfeng.voucher.stack.bean.entity.Voucher;
-import com.dwarfeng.voucher.stack.exception.InvalidVoucherException;
-import com.dwarfeng.voucher.stack.exception.VoucherAlreadyExistsException;
-import com.dwarfeng.voucher.stack.exception.VoucherCategoryNotExistsException;
-import com.dwarfeng.voucher.stack.exception.VoucherNotExistsException;
+import com.dwarfeng.voucher.stack.bean.entity.VoucherCategory;
+import com.dwarfeng.voucher.stack.exception.*;
+import com.dwarfeng.voucher.stack.service.CheckerInfoMaintainService;
 import com.dwarfeng.voucher.stack.service.VoucherCategoryMaintainService;
 import com.dwarfeng.voucher.stack.service.VoucherMaintainService;
 import org.springframework.stereotype.Component;
@@ -29,13 +28,16 @@ public class HandlerValidator {
 
     private final VoucherCategoryMaintainService voucherCategoryMaintainService;
     private final VoucherMaintainService voucherMaintainService;
+    private final CheckerInfoMaintainService checkerInfoMaintainService;
 
     public HandlerValidator(
             VoucherCategoryMaintainService voucherCategoryMaintainService,
-            VoucherMaintainService voucherMaintainService
+            VoucherMaintainService voucherMaintainService,
+            CheckerInfoMaintainService checkerInfoMaintainService
     ) {
         this.voucherCategoryMaintainService = voucherCategoryMaintainService;
         this.voucherMaintainService = voucherMaintainService;
+        this.checkerInfoMaintainService = checkerInfoMaintainService;
     }
 
     public void makeSureVoucherCategoryExists(StringIdKey voucherCategoryKey) throws HandlerException {
@@ -79,6 +81,33 @@ public class HandlerValidator {
             }
             if (!voucher.isValid()) {
                 throw new InvalidVoucherException(voucherKey);
+            }
+        } catch (ServiceException e) {
+            throw new HandlerException(e);
+        }
+    }
+
+    public void makeSureVoucherCategoryEnabled(StringIdKey voucherCategoryKey) throws HandlerException {
+        try {
+            if (Objects.isNull(voucherCategoryKey)) {
+                throw new VoucherCategoryNotExistsException(null);
+            }
+            VoucherCategory voucherCategory = voucherCategoryMaintainService.getIfExists(voucherCategoryKey);
+            if (Objects.isNull(voucherCategory)) {
+                throw new VoucherCategoryNotExistsException(voucherCategoryKey);
+            }
+            if (!voucherCategory.isEnabled()) {
+                throw new VoucherCategoryDisabledException(voucherCategoryKey);
+            }
+        } catch (ServiceException e) {
+            throw new HandlerException(e);
+        }
+    }
+
+    public void makeSureCheckerInfoExists(StringIdKey checkerInfoKey) throws HandlerException {
+        try {
+            if (Objects.isNull(checkerInfoKey) || !checkerInfoMaintainService.exists(checkerInfoKey)) {
+                throw new CheckerInfoNotExistsException(checkerInfoKey);
             }
         } catch (ServiceException e) {
             throw new HandlerException(e);

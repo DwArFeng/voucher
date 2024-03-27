@@ -4,6 +4,12 @@
 
 #### 功能构建
 
+- 实现凭证查询服务。
+  - com.dwarfeng.voucher.stack.service.VoucherService。
+
+- 实现核心机制。
+  - 检查机制。
+
 - 实现实体的操作处理器。
   - com.dwarfeng.voucher.stack.handler.VoucherCategoryVariableOperateHandler。
   - com.dwarfeng.voucher.stack.handler.VoucherOperateHandler。

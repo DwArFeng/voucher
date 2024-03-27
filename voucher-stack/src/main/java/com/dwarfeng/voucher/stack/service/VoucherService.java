@@ -1,0 +1,47 @@
+package com.dwarfeng.voucher.stack.service;
+
+import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
+import com.dwarfeng.subgrade.stack.exception.ServiceException;
+import com.dwarfeng.subgrade.stack.service.Service;
+import com.dwarfeng.voucher.stack.bean.dto.VoucherCreateInfo;
+import com.dwarfeng.voucher.stack.bean.dto.VoucherInspectInfo;
+import com.dwarfeng.voucher.stack.bean.dto.VoucherInspectResult;
+
+/**
+ * 凭证服务。
+ *
+ * @author DwArFeng
+ * @since beta-1.0.0
+ */
+public interface VoucherService extends Service {
+
+    /**
+     * 创建凭证。
+     *
+     * <p>
+     * 这个方法接收一个 VoucherCreateInfo 对象，然后返回创建的凭证的 LongIdKey。
+     *
+     * <p>
+     * <code>createInfo</code> 的 <code>voucherKey</code> 字段为可选值，如果为 <code>null</code>，则表示由系统自动生成；
+     * 如果不为 <code>null</code>，则表示使用指定的值。<br>
+     * 如果 <code>createInfo</code> 的 <code>voucherKey</code> 字段不为 <code>null</code>，
+     * 则需要保证不存在相同主键的凭证，否则会抛出异常。
+     *
+     * @param createInfo 一个包含创建凭证所需信息的 VoucherCreateInfo 对象。
+     * @return 创建的凭证的 LongIdKey。
+     * @throws ServiceException 服务异常。
+     */
+    LongIdKey create(VoucherCreateInfo createInfo) throws ServiceException;
+
+    /**
+     * 查看凭证。
+     *
+     * <p>
+     * 这个方法接收一个 VoucherInspectInfo 对象，然后返回对应的凭证。
+     *
+     * @param inspectInfo 一个包含查看凭证所需信息的 VoucherInspectInfo 对象。
+     * @return 对应的凭证查看结果。
+     * @throws ServiceException 服务异常。
+     */
+    VoucherInspectResult inspect(VoucherInspectInfo inspectInfo) throws ServiceException;
+}
