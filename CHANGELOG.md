@@ -4,6 +4,10 @@
 
 #### 功能构建
 
+- 实现预设检查器。
+  - com.dwarfeng.voucher.impl.handler.checker.GroovyCheckerRegistry。
+  - com.dwarfeng.voucher.impl.handler.checker.SingleUseCheckerRegistry。
+
 - 实现凭证查询服务。
   - com.dwarfeng.voucher.stack.service.VoucherService。
 
