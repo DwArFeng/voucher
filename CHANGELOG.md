@@ -4,6 +4,8 @@
 
 #### 功能构建
 
+- 完成 node 模块，打包测试及启动测试通过。
+
 - 实现预设检查器。
   - com.dwarfeng.voucher.impl.handler.checker.GroovyCheckerRegistry。
   - com.dwarfeng.voucher.impl.handler.checker.SingleUseCheckerRegistry。

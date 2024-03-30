@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress SpringFacetInspection -->
+<beans
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.springframework.org/schema/beans"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd"
+>
+
+    <!--扫描handler的实现包。 -->
+    <context:component-scan base-package="com.dwarfeng.voucher.impl.handler.checker" use-default-filters="false">
+        <!-- 加载 GroovyChecker -->
+        <!--
+        <context:include-filter
+                type="assignable" expression="com.dwarfeng.voucher.impl.handler.checker.GroovyCheckerRegistry"
+        />
+        -->
+
+        <!-- 加载 SingleUseChecker -->
+        <!--
+        <context:include-filter
+                type="assignable" expression="com.dwarfeng.voucher.impl.handler.checker.SingleUseCheckerRegistry"
+        />
+        -->
+    </context:component-scan>
+</beans>
