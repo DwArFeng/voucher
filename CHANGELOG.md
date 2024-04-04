@@ -15,6 +15,7 @@
 
 - 实现核心机制。
   - 检查机制。
+  - 清理机制。
 
 - 实现实体的操作处理器。
   - com.dwarfeng.voucher.stack.handler.VoucherCategoryVariableOperateHandler。
