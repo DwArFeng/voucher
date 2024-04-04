@@ -6,6 +6,12 @@
 
 - 完成 node 模块，打包测试及启动测试通过。
 
+- 实现预设推送器。
+  - com.dwarfeng.voucher.impl.handler.pusher.DrainPusher。
+  - com.dwarfeng.voucher.impl.handler.pusher.LogPusher。
+  - com.dwarfeng.voucher.impl.handler.pusher.MultiPusher。
+  - com.dwarfeng.voucher.impl.handler.pusher.NativeKafkaPusher。
+
 - 实现预设重置器。
   - com.dwarfeng.voucher.impl.handler.resetter.CronResetter。
   - com.dwarfeng.voucher.impl.handler.resetter.DubboResetter。
@@ -24,6 +30,7 @@
   - 检查机制。
   - 清理机制。
   - 重置机制。
+  - 推送机制。
 
 - 实现实体的操作处理器。
   - com.dwarfeng.voucher.stack.handler.VoucherCategoryVariableOperateHandler。
