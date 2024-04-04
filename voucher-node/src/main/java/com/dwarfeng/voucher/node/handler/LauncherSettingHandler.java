@@ -15,6 +15,9 @@ public class LauncherSettingHandler implements Handler {
     @Value("${launcher.enable_cleanup_delay}")
     private long enableCleanupDelay;
 
+    @Value("${launcher.start_reset_delay}")
+    private long startResetDelay;
+
     public boolean isResetCheckerSupport() {
         return resetCheckerSupport;
     }
@@ -27,12 +30,17 @@ public class LauncherSettingHandler implements Handler {
         return enableCleanupDelay;
     }
 
+    public long getStartResetDelay() {
+        return startResetDelay;
+    }
+
     @Override
     public String toString() {
         return "LauncherSettingHandler{" +
                 "resetCheckerSupport=" + resetCheckerSupport +
                 ", onlineCleanupDelay=" + onlineCleanupDelay +
                 ", enableCleanupDelay=" + enableCleanupDelay +
+                ", startResetDelay=" + startResetDelay +
                 '}';
     }
 }

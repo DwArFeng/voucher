@@ -6,6 +6,13 @@
 
 - 完成 node 模块，打包测试及启动测试通过。
 
+- 实现预设重置器。
+  - com.dwarfeng.voucher.impl.handler.resetter.CronResetter。
+  - com.dwarfeng.voucher.impl.handler.resetter.DubboResetter。
+  - com.dwarfeng.voucher.impl.handler.resetter.FixedDelayResetter。
+  - com.dwarfeng.voucher.impl.handler.resetter.FixedRateResetter。
+  - com.dwarfeng.voucher.impl.handler.resetter.NeverResetter。
+
 - 实现预设检查器。
   - com.dwarfeng.voucher.impl.handler.checker.GroovyCheckerRegistry。
   - com.dwarfeng.voucher.impl.handler.checker.SingleUseCheckerRegistry。
@@ -16,6 +23,7 @@
 - 实现核心机制。
   - 检查机制。
   - 清理机制。
+  - 重置机制。
 
 - 实现实体的操作处理器。
   - com.dwarfeng.voucher.stack.handler.VoucherCategoryVariableOperateHandler。

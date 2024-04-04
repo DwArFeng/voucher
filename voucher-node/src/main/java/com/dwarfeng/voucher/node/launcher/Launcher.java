@@ -5,6 +5,7 @@ import com.dwarfeng.subgrade.stack.exception.ServiceException;
 import com.dwarfeng.voucher.node.handler.LauncherSettingHandler;
 import com.dwarfeng.voucher.stack.service.CheckerSupportMaintainService;
 import com.dwarfeng.voucher.stack.service.CleanupQosService;
+import com.dwarfeng.voucher.stack.service.ResetQosService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -35,6 +36,9 @@ public class Launcher {
             mayOnlineCleanup(ctx);
             // 根据启动器设置处理器的设置，选择性启动清理服务。
             mayEnableCleanup(ctx);
+
+            // 根据启动器设置处理器的设置，选择启动重置服务。
+            mayStartReset(ctx);
         });
     }
 
@@ -120,6 +124,41 @@ public class Launcher {
                         }
                     },
                     new Date(System.currentTimeMillis() + enableCleanupDelay)
+            );
+        }
+    }
+
+    private static void mayStartReset(ApplicationContext ctx) {
+        // 获取启动器设置处理器，用于获取启动器设置，并按照设置进行启动。
+        LauncherSettingHandler launcherSettingHandler = ctx.getBean(LauncherSettingHandler.class);
+
+        // 获取程序中的 ThreadPoolTaskScheduler，用于处理计划任务。
+        ThreadPoolTaskScheduler scheduler = ctx.getBean(ThreadPoolTaskScheduler.class);
+
+        // 处理重置处理器的启动选项。
+        ResetQosService resetQosService = ctx.getBean(ResetQosService.class);
+
+        // 重置处理器是否启动重置服务。
+        long startResetDelay = launcherSettingHandler.getStartResetDelay();
+        if (startResetDelay == 0) {
+            LOGGER.info("立即启动重置服务...");
+            try {
+                resetQosService.start();
+            } catch (ServiceException e) {
+                LOGGER.error("无法启动重置服务，异常原因如下", e);
+            }
+        } else if (startResetDelay > 0) {
+            LOGGER.info(startResetDelay + " 毫秒后启动重置服务...");
+            scheduler.schedule(
+                    () -> {
+                        LOGGER.info("启动重置服务...");
+                        try {
+                            resetQosService.start();
+                        } catch (ServiceException e) {
+                            LOGGER.error("无法启动重置服务，异常原因如下", e);
+                        }
+                    },
+                    new Date(System.currentTimeMillis() + startResetDelay)
             );
         }
     }
