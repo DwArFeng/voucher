@@ -4,6 +4,12 @@
 
 #### 功能构建
 
+- 实现运维指令。
+  - com.dwarfeng.voucher.impl.service.telqos.CheckLocalCacheCommand。
+  - com.dwarfeng.voucher.impl.service.telqos.VoucherCommand。
+  - com.dwarfeng.voucher.impl.service.telqos.ResetCommand。
+  - com.dwarfeng.voucher.impl.service.telqos.CleanupCommand。
+
 - 完成 node 模块，打包测试及启动测试通过。
 
 - 实现预设推送器。
