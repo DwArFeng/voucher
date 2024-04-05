@@ -11,7 +11,7 @@
     <parent>
         <groupId>com.dwarfeng</groupId>
         <artifactId>voucher</artifactId>
-        <version>beta-1.0.0.a-SNAPSHOT</version>
+        <version>beta-1.0.0.a</version>
     </parent>
 
     <artifactId>voucher-stack</artifactId>
