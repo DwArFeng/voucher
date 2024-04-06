@@ -52,7 +52,7 @@ public class CheckerHandlerImpl implements CheckerHandler {
             LOGGER.debug("检查器构建成功!");
             checker.init(checkerContext);
             LOGGER.debug("检查器初始化成功!");
-            LOGGER.debug("检查器: " + checker);
+            LOGGER.debug("检查器: {}", checker);
             return checker;
         } catch (CheckerException e) {
             throw e;

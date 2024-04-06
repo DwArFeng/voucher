@@ -46,7 +46,7 @@ public class CleanupProcessor {
         tm.stop();
 
         // 记录日志。
-        LOGGER.debug("清理作业执行完成, 用时: " + tm.getTimeMs() + "毫秒");
+        LOGGER.debug("清理作业执行完成, 用时: {} 毫秒", tm.getTimeMs());
     }
 
     @Override
