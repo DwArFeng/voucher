@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- 优化部分类构造器方法中的参数名。
+  - com.dwarfeng.voucher.impl.handler.pusher.AbstractPusher。
+
 - 优化支持实体机制。
   - 新建支持 QoS 服务 com.dwarfeng.voucher.stack.service.SupportQosService。
   - 将支持实体维护服务的重置功能迁移至 QoS 服务。
