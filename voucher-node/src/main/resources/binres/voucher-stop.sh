@@ -1,6 +1,7 @@
 #!/bin/sh
-# 程序的根目录
-basedir="/usr/local/voucher"
 
-PID=$(cat "$basedir/voucher.pid")
+# Set the root directory of the program.
+basedir="$(cd "$(dirname "$0")/.." && pwd)"
+
+PID=$(cat "$basedir/acckeeper.pid")
 kill "$PID"

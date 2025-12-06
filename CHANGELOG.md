@@ -4,6 +4,11 @@
 
 ### 功能构建
 
+- 启停脚本内容优化。
+  - binres/voucher-start.bat。
+  - binres/voucher-start.sh。
+  - binres/voucher-stop.sh。
+
 - 优化启停脚本的目录结构。
 
 - 优化实体映射器机制。
