@@ -89,6 +89,8 @@
 
 ### Bug 修复
 
+- 修正 `voucher-impl` 模块中错误的 dubbo 应用名称。
+
 - 修复 telqos 工具类中部分注解不正确的 bug。
   - com.dwarfeng.voucher.impl.service.telqos.CommandUtil。
 
