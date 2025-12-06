@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- 优化部分运维指令的标识符。
+  - com.dwarfeng.voucher.impl.service.telqos.CheckLocalCacheCommand。
+
 - 重构检查机制。
   - 将检查器接口的方法参数从多个独立参数改为使用 DTO 对象，提高接口的可扩展性。
 

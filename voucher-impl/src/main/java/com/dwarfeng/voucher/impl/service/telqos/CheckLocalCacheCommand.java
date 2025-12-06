@@ -31,7 +31,8 @@ public class CheckLocalCacheCommand extends CliCommand {
             COMMAND_OPTION_CLEAR
     };
 
-    private static final String IDENTITY = "dlc";
+    @SuppressWarnings({"SpellCheckingInspection", "RedundantSuppression"})
+    private static final String IDENTITY = "clc";
     private static final String DESCRIPTION = "检查器本地缓存操作";
 
     private static final String CMD_LINE_SYNTAX_LOOKUP = IDENTITY + " " +
