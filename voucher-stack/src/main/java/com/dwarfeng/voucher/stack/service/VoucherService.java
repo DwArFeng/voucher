@@ -39,6 +39,10 @@ public interface VoucherService extends Service {
      * <p>
      * 这个方法接收一个 VoucherInspectInfo 对象，然后返回对应的凭证。
      *
+     * <p>
+     * 需要注意的是，该方法不是幂等的，每次调用都有可能产生不同的结果（如查看一次后凭证失效，再次查看报错），
+     * 具体取决于凭证对应的检查器逻辑。
+     *
      * @param inspectInfo 一个包含查看凭证所需信息的 VoucherInspectInfo 对象。
      * @return 对应的凭证查看结果。
      * @throws ServiceException 服务异常。
