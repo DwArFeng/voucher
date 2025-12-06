@@ -9,7 +9,7 @@ import com.dwarfeng.subgrade.sdk.bean.key.HibernateStringIdKey;
 import com.dwarfeng.subgrade.sdk.hibernate.modification.DefaultDeletionMod;
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
-import com.dwarfeng.voucher.impl.bean.HibernateMapper;
+import com.dwarfeng.voucher.impl.bean.BeanMapper;
 import com.dwarfeng.voucher.impl.bean.entity.*;
 import com.dwarfeng.voucher.impl.bean.key.HibernateVoucherCategoryVariableKey;
 import com.dwarfeng.voucher.impl.bean.key.HibernateVoucherVariableKey;
@@ -60,8 +60,8 @@ public class DaoConfiguration {
     checkerInfoHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 hibernateTemplate,
-                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, HibernateMapper.class),
-                new MapStructBeanTransformer<>(CheckerInfo.class, HibernateCheckerInfo.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(CheckerInfo.class, HibernateCheckerInfo.class, BeanMapper.class),
                 HibernateCheckerInfo.class,
                 new DefaultDeletionMod<>(),
                 batchSize
@@ -72,7 +72,7 @@ public class DaoConfiguration {
     public HibernateEntireLookupDao<CheckerInfo, HibernateCheckerInfo> checkerInfoHibernateEntireLookupDao() {
         return new HibernateEntireLookupDao<>(
                 hibernateTemplate,
-                new MapStructBeanTransformer<>(CheckerInfo.class, HibernateCheckerInfo.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(CheckerInfo.class, HibernateCheckerInfo.class, BeanMapper.class),
                 HibernateCheckerInfo.class
         );
     }
@@ -81,7 +81,7 @@ public class DaoConfiguration {
     public HibernatePresetLookupDao<CheckerInfo, HibernateCheckerInfo> checkerInfoHibernatePresetLookupDao() {
         return new HibernatePresetLookupDao<>(
                 hibernateTemplate,
-                new MapStructBeanTransformer<>(CheckerInfo.class, HibernateCheckerInfo.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(CheckerInfo.class, HibernateCheckerInfo.class, BeanMapper.class),
                 HibernateCheckerInfo.class,
                 checkerInfoPresetCriteriaMaker
         );
@@ -92,9 +92,9 @@ public class DaoConfiguration {
     checkerSupportHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 hibernateTemplate,
-                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, BeanMapper.class),
                 new MapStructBeanTransformer<>(
-                        CheckerSupport.class, HibernateCheckerSupport.class, HibernateMapper.class
+                        CheckerSupport.class, HibernateCheckerSupport.class, BeanMapper.class
                 ),
                 HibernateCheckerSupport.class,
                 new DefaultDeletionMod<>(),
@@ -107,7 +107,7 @@ public class DaoConfiguration {
         return new HibernateEntireLookupDao<>(
                 hibernateTemplate,
                 new MapStructBeanTransformer<>(
-                        CheckerSupport.class, HibernateCheckerSupport.class, HibernateMapper.class
+                        CheckerSupport.class, HibernateCheckerSupport.class, BeanMapper.class
                 ),
                 HibernateCheckerSupport.class
         );
@@ -118,7 +118,7 @@ public class DaoConfiguration {
         return new HibernatePresetLookupDao<>(
                 hibernateTemplate,
                 new MapStructBeanTransformer<>(
-                        CheckerSupport.class, HibernateCheckerSupport.class, HibernateMapper.class
+                        CheckerSupport.class, HibernateCheckerSupport.class, BeanMapper.class
                 ),
                 HibernateCheckerSupport.class,
                 checkerSupportPresetCriteriaMaker
@@ -130,8 +130,8 @@ public class DaoConfiguration {
     voucherHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 hibernateTemplate,
-                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, HibernateMapper.class),
-                new MapStructBeanTransformer<>(Voucher.class, HibernateVoucher.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(Voucher.class, HibernateVoucher.class, BeanMapper.class),
                 HibernateVoucher.class,
                 new DefaultDeletionMod<>(),
                 batchSize
@@ -142,7 +142,7 @@ public class DaoConfiguration {
     public HibernateEntireLookupDao<Voucher, HibernateVoucher> voucherHibernateEntireLookupDao() {
         return new HibernateEntireLookupDao<>(
                 hibernateTemplate,
-                new MapStructBeanTransformer<>(Voucher.class, HibernateVoucher.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Voucher.class, HibernateVoucher.class, BeanMapper.class),
                 HibernateVoucher.class
         );
     }
@@ -151,7 +151,7 @@ public class DaoConfiguration {
     public HibernatePresetLookupDao<Voucher, HibernateVoucher> voucherHibernatePresetLookupDao() {
         return new HibernatePresetLookupDao<>(
                 hibernateTemplate,
-                new MapStructBeanTransformer<>(Voucher.class, HibernateVoucher.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Voucher.class, HibernateVoucher.class, BeanMapper.class),
                 HibernateVoucher.class,
                 voucherPresetCriteriaMaker
         );
@@ -163,10 +163,10 @@ public class DaoConfiguration {
         return new HibernateBatchBaseDao<>(
                 hibernateTemplate,
                 new MapStructBeanTransformer<>(
-                        StringIdKey.class, HibernateStringIdKey.class, HibernateMapper.class
+                        StringIdKey.class, HibernateStringIdKey.class, BeanMapper.class
                 ),
                 new MapStructBeanTransformer<>(
-                        VoucherCategory.class, HibernateVoucherCategory.class, HibernateMapper.class
+                        VoucherCategory.class, HibernateVoucherCategory.class, BeanMapper.class
                 ),
                 HibernateVoucherCategory.class,
                 new DefaultDeletionMod<>(),
@@ -180,7 +180,7 @@ public class DaoConfiguration {
         return new HibernateEntireLookupDao<>(
                 hibernateTemplate,
                 new MapStructBeanTransformer<>(
-                        VoucherCategory.class, HibernateVoucherCategory.class, HibernateMapper.class
+                        VoucherCategory.class, HibernateVoucherCategory.class, BeanMapper.class
                 ),
                 HibernateVoucherCategory.class
         );
@@ -192,7 +192,7 @@ public class DaoConfiguration {
         return new HibernatePresetLookupDao<>(
                 hibernateTemplate,
                 new MapStructBeanTransformer<>(
-                        VoucherCategory.class, HibernateVoucherCategory.class, HibernateMapper.class
+                        VoucherCategory.class, HibernateVoucherCategory.class, BeanMapper.class
                 ),
                 HibernateVoucherCategory.class,
                 voucherCategoryPresetCriteriaMaker
@@ -205,10 +205,10 @@ public class DaoConfiguration {
         return new HibernateBatchBaseDao<>(
                 hibernateTemplate,
                 new MapStructBeanTransformer<>(
-                        VoucherCategoryVariableKey.class, HibernateVoucherCategoryVariableKey.class, HibernateMapper.class
+                        VoucherCategoryVariableKey.class, HibernateVoucherCategoryVariableKey.class, BeanMapper.class
                 ),
                 new MapStructBeanTransformer<>(
-                        VoucherCategoryVariable.class, HibernateVoucherCategoryVariable.class, HibernateMapper.class
+                        VoucherCategoryVariable.class, HibernateVoucherCategoryVariable.class, BeanMapper.class
                 ),
                 HibernateVoucherCategoryVariable.class,
                 new DefaultDeletionMod<>(),
@@ -222,7 +222,7 @@ public class DaoConfiguration {
         return new HibernateEntireLookupDao<>(
                 hibernateTemplate,
                 new MapStructBeanTransformer<>(
-                        VoucherCategoryVariable.class, HibernateVoucherCategoryVariable.class, HibernateMapper.class
+                        VoucherCategoryVariable.class, HibernateVoucherCategoryVariable.class, BeanMapper.class
                 ),
                 HibernateVoucherCategoryVariable.class
         );
@@ -234,7 +234,7 @@ public class DaoConfiguration {
         return new HibernatePresetLookupDao<>(
                 hibernateTemplate,
                 new MapStructBeanTransformer<>(
-                        VoucherCategoryVariable.class, HibernateVoucherCategoryVariable.class, HibernateMapper.class
+                        VoucherCategoryVariable.class, HibernateVoucherCategoryVariable.class, BeanMapper.class
                 ),
                 HibernateVoucherCategoryVariable.class,
                 voucherCategoryVariablePresetCriteriaMaker
@@ -247,10 +247,10 @@ public class DaoConfiguration {
         return new HibernateBatchBaseDao<>(
                 hibernateTemplate,
                 new MapStructBeanTransformer<>(
-                        VoucherVariableKey.class, HibernateVoucherVariableKey.class, HibernateMapper.class
+                        VoucherVariableKey.class, HibernateVoucherVariableKey.class, BeanMapper.class
                 ),
                 new MapStructBeanTransformer<>(
-                        VoucherVariable.class, HibernateVoucherVariable.class, HibernateMapper.class
+                        VoucherVariable.class, HibernateVoucherVariable.class, BeanMapper.class
                 ),
                 HibernateVoucherVariable.class,
                 new DefaultDeletionMod<>(),
@@ -264,7 +264,7 @@ public class DaoConfiguration {
         return new HibernateEntireLookupDao<>(
                 hibernateTemplate,
                 new MapStructBeanTransformer<>(
-                        VoucherVariable.class, HibernateVoucherVariable.class, HibernateMapper.class
+                        VoucherVariable.class, HibernateVoucherVariable.class, BeanMapper.class
                 ),
                 HibernateVoucherVariable.class
         );
@@ -276,7 +276,7 @@ public class DaoConfiguration {
         return new HibernatePresetLookupDao<>(
                 hibernateTemplate,
                 new MapStructBeanTransformer<>(
-                        VoucherVariable.class, HibernateVoucherVariable.class, HibernateMapper.class
+                        VoucherVariable.class, HibernateVoucherVariable.class, BeanMapper.class
                 ),
                 HibernateVoucherVariable.class,
                 voucherVariablePresetCriteriaMaker

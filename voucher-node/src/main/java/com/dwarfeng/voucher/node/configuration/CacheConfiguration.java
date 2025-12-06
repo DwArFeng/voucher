@@ -6,7 +6,7 @@ import com.dwarfeng.subgrade.sdk.redis.formatter.LongIdStringKeyFormatter;
 import com.dwarfeng.subgrade.sdk.redis.formatter.StringIdStringKeyFormatter;
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
-import com.dwarfeng.voucher.sdk.bean.FastJsonMapper;
+import com.dwarfeng.voucher.sdk.bean.BeanMapper;
 import com.dwarfeng.voucher.sdk.bean.entity.*;
 import com.dwarfeng.voucher.sdk.bean.key.format.VoucherCategoryVariableStringKeyFormatter;
 import com.dwarfeng.voucher.sdk.bean.key.format.VoucherVariableStringKeyFormatter;
@@ -46,7 +46,7 @@ public class CacheConfiguration {
         return new RedisBatchBaseCache<>(
                 (RedisTemplate<String, FastJsonCheckerInfo>) template,
                 new StringIdStringKeyFormatter(checkerInfoPrefix),
-                new MapStructBeanTransformer<>(CheckerInfo.class, FastJsonCheckerInfo.class, FastJsonMapper.class)
+                new MapStructBeanTransformer<>(CheckerInfo.class, FastJsonCheckerInfo.class, BeanMapper.class)
         );
     }
 
@@ -57,7 +57,7 @@ public class CacheConfiguration {
         return new RedisBatchBaseCache<>(
                 (RedisTemplate<String, FastJsonCheckerSupport>) template,
                 new StringIdStringKeyFormatter(checkerSupportPrefix),
-                new MapStructBeanTransformer<>(CheckerSupport.class, FastJsonCheckerSupport.class, FastJsonMapper.class)
+                new MapStructBeanTransformer<>(CheckerSupport.class, FastJsonCheckerSupport.class, BeanMapper.class)
         );
     }
 
@@ -67,7 +67,7 @@ public class CacheConfiguration {
         return new RedisBatchBaseCache<>(
                 (RedisTemplate<String, FastJsonVoucher>) template,
                 new LongIdStringKeyFormatter(voucherPrefix),
-                new MapStructBeanTransformer<>(Voucher.class, FastJsonVoucher.class, FastJsonMapper.class)
+                new MapStructBeanTransformer<>(Voucher.class, FastJsonVoucher.class, BeanMapper.class)
         );
     }
 
@@ -79,7 +79,7 @@ public class CacheConfiguration {
                 (RedisTemplate<String, FastJsonVoucherCategory>) template,
                 new StringIdStringKeyFormatter(voucherCategoryPrefix),
                 new MapStructBeanTransformer<>(
-                        VoucherCategory.class, FastJsonVoucherCategory.class, FastJsonMapper.class
+                        VoucherCategory.class, FastJsonVoucherCategory.class, BeanMapper.class
                 )
         );
     }
@@ -92,7 +92,7 @@ public class CacheConfiguration {
                 (RedisTemplate<String, FastJsonVoucherCategoryVariable>) template,
                 new VoucherCategoryVariableStringKeyFormatter(voucherCategoryVariablePrefix),
                 new MapStructBeanTransformer<>(
-                        VoucherCategoryVariable.class, FastJsonVoucherCategoryVariable.class, FastJsonMapper.class
+                        VoucherCategoryVariable.class, FastJsonVoucherCategoryVariable.class, BeanMapper.class
                 )
         );
     }
@@ -105,7 +105,7 @@ public class CacheConfiguration {
                 (RedisTemplate<String, FastJsonVoucherVariable>) template,
                 new VoucherVariableStringKeyFormatter(voucherVariablePrefix),
                 new MapStructBeanTransformer<>(
-                        VoucherVariable.class, FastJsonVoucherVariable.class, FastJsonMapper.class
+                        VoucherVariable.class, FastJsonVoucherVariable.class, BeanMapper.class
                 )
         );
     }
