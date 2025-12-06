@@ -1,6 +1,7 @@
 package com.dwarfeng.voucher.impl.handler.pusher;
 
 import com.dwarfeng.subgrade.stack.exception.HandlerException;
+import com.dwarfeng.voucher.sdk.handler.pusher.AbstractPusher;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

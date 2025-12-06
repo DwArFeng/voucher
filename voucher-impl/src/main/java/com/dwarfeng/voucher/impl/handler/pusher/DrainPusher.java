@@ -1,5 +1,6 @@
 package com.dwarfeng.voucher.impl.handler.pusher;
 
+import com.dwarfeng.voucher.sdk.handler.pusher.AbstractPusher;
 import org.springframework.stereotype.Component;
 
 /**

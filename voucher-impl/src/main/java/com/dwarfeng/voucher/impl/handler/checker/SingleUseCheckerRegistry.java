@@ -5,6 +5,8 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.dwarfeng.subgrade.stack.bean.Bean;
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
+import com.dwarfeng.voucher.sdk.handler.checker.AbstractChecker;
+import com.dwarfeng.voucher.sdk.handler.checker.AbstractCheckerRegistry;
 import com.dwarfeng.voucher.stack.exception.CheckerException;
 import com.dwarfeng.voucher.stack.exception.CheckerMakeException;
 import com.dwarfeng.voucher.stack.handler.Checker;

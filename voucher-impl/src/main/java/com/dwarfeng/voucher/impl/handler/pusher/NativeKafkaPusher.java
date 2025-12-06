@@ -1,5 +1,6 @@
 package com.dwarfeng.voucher.impl.handler.pusher;
 
+import com.dwarfeng.voucher.sdk.handler.pusher.AbstractPusher;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;

@@ -1,5 +1,6 @@
 package com.dwarfeng.voucher.impl.handler.resetter;
 
+import com.dwarfeng.voucher.sdk.handler.resetter.AbstractResetter;
 import org.springframework.stereotype.Component;
 
 /**

@@ -1,49 +1,20 @@
 package com.dwarfeng.voucher.impl.handler.checker;
 
-import com.dwarfeng.voucher.impl.handler.CheckerMaker;
-import com.dwarfeng.voucher.impl.handler.CheckerSupporter;
-
-import java.util.Objects;
-
 /**
  * 抽象检查器注册。
  *
  * @author DwArFeng
+ * @see com.dwarfeng.voucher.sdk.handler.checker.AbstractCheckerRegistry
  * @since beta-1.0.0
+ * @deprecated 该对象已经被废弃，请使用 sdk 模块下的对应对象代替。
  */
-public abstract class AbstractCheckerRegistry implements CheckerMaker, CheckerSupporter {
-
-    protected String checkerType;
+@Deprecated
+public abstract class AbstractCheckerRegistry extends com.dwarfeng.voucher.sdk.handler.checker.AbstractCheckerRegistry {
 
     public AbstractCheckerRegistry() {
     }
 
     public AbstractCheckerRegistry(String checkerType) {
-        this.checkerType = checkerType;
-    }
-
-    @Override
-    public boolean supportType(String type) {
-        return Objects.equals(checkerType, type);
-    }
-
-    @Override
-    public String provideType() {
-        return checkerType;
-    }
-
-    public String getCheckerType() {
-        return checkerType;
-    }
-
-    public void setCheckerType(String checkerType) {
-        this.checkerType = checkerType;
-    }
-
-    @Override
-    public String toString() {
-        return "AbstractCheckerRegistry{" +
-                "checkerType='" + checkerType + '\'' +
-                '}';
+        super(checkerType);
     }
 }

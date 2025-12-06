@@ -1,25 +1,13 @@
 package com.dwarfeng.voucher.impl.handler;
 
-import com.dwarfeng.subgrade.stack.exception.HandlerException;
-
 /**
  * 事件推送器。
  *
  * @author DwArFeng
+ * @see com.dwarfeng.voucher.sdk.handler.Pusher
  * @since beta-1.0.0
+ * @deprecated 该对象已经被废弃，请使用 sdk 模块下的对应对象代替。
  */
-public interface Pusher {
-
-    /**
-     * 返回制造器是否支持指定的类型。
-     *
-     * @param type 指定的类型。
-     * @return 制造器是否支持指定的类型。
-     */
-    boolean supportType(String type);
-
-    /**
-     * 检查重置时执行的推送操作。
-     */
-    void checkReset() throws HandlerException;
+@Deprecated
+public interface Pusher extends com.dwarfeng.voucher.sdk.handler.Pusher {
 }

@@ -2,6 +2,7 @@ package com.dwarfeng.voucher.impl.handler;
 
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
+import com.dwarfeng.voucher.sdk.handler.CheckerMaker;
 import com.dwarfeng.voucher.stack.bean.dto.*;
 import com.dwarfeng.voucher.stack.bean.entity.VoucherCategoryVariable;
 import com.dwarfeng.voucher.stack.bean.entity.VoucherVariable;

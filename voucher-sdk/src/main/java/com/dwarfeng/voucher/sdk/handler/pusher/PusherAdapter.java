@@ -1,4 +1,6 @@
-package com.dwarfeng.voucher.impl.handler.pusher;
+package com.dwarfeng.voucher.sdk.handler.pusher;
+
+import com.dwarfeng.subgrade.stack.exception.HandlerException;
 
 /**
  * 推送器适配器。
@@ -14,17 +16,27 @@ package com.dwarfeng.voucher.impl.handler.pusher;
  * </ul>
  *
  * @author DwArFeng
- * @since beta-1.0.0
- * @deprecated 该对象已经被废弃，请使用 sdk 模块下的对应对象代替。
- * @see com.dwarfeng.voucher.sdk.handler.pusher.PusherAdapter
+ * @since 1.1.0
  */
-@Deprecated
-public abstract class PusherAdapter extends com.dwarfeng.voucher.sdk.handler.pusher.PusherAdapter {
+public abstract class PusherAdapter extends AbstractPusher {
 
     public PusherAdapter() {
+        super();
     }
 
     public PusherAdapter(String pusherType) {
         super(pusherType);
+    }
+
+    @SuppressWarnings("RedundantThrows")
+    @Override
+    public void checkReset() throws HandlerException {
+    }
+
+    @Override
+    public String toString() {
+        return "PusherAdapter{" +
+                "pusherType='" + pusherType + '\'' +
+                '}';
     }
 }
