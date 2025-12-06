@@ -151,11 +151,19 @@ public class VoucherCategoryVariableMaintainServiceImpl implements VoucherCatego
         return crudService.batchGetIfExists(keys);
     }
 
+    @Deprecated
     @Override
     @BehaviorAnalyse
     @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
     public List<VoucherCategoryVariableKey> batchInsertIfExists(List<VoucherCategoryVariable> elements) throws ServiceException {
         return crudService.batchInsertIfExists(elements);
+    }
+
+    @Override
+    @BehaviorAnalyse
+    @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
+    public List<VoucherCategoryVariableKey> batchInsertIfNotExists(List<VoucherCategoryVariable> elements) throws ServiceException {
+        return crudService.batchInsertIfNotExists(elements);
     }
 
     @Override
