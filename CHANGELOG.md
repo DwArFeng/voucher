@@ -4,6 +4,11 @@
 
 ### 功能构建
 
+- 增加预设的运维指令。
+  - com.dwarfeng.springtelqos.api.integration.log4j2.Log4j2Command。
+  - com.dwarfeng.springtelqos.api.integration.system.UptimeCommand。
+  - com.dwarfeng.springtelqos.api.integration.system.JmxRemoteCommand。
+
 - 为部分工具类中方法的入口参数增加 `@Nonnull` 注解。
   - com.dwarfeng.voucher.impl.service.telqos.CommandUtil。
 
