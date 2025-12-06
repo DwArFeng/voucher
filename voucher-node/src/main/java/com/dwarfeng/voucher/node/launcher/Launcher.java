@@ -3,9 +3,9 @@ package com.dwarfeng.voucher.node.launcher;
 import com.dwarfeng.springterminator.sdk.util.ApplicationUtil;
 import com.dwarfeng.subgrade.stack.exception.ServiceException;
 import com.dwarfeng.voucher.node.handler.LauncherSettingHandler;
-import com.dwarfeng.voucher.stack.service.CheckerSupportMaintainService;
 import com.dwarfeng.voucher.stack.service.CleanupQosService;
 import com.dwarfeng.voucher.stack.service.ResetQosService;
+import com.dwarfeng.voucher.stack.service.SupportQosService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -29,8 +29,8 @@ public class Launcher {
                 "file:opt/opt*.xml",
                 "file:optext/opt*.xml"
         }, ctx -> {
-            // 根据启动器设置处理器的设置，选择性执行重置。
-            mayResetCheckerSupport(ctx);
+            // 根据启动器设置处理器的设置，选择性重置检查器。
+            mayResetChecker(ctx);
 
             // 根据启动器设置处理器的设置，选择性上线清理服务。
             mayOnlineCleanup(ctx);
@@ -42,19 +42,22 @@ public class Launcher {
         });
     }
 
-    private static void mayResetCheckerSupport(ApplicationContext ctx) {
-        // 获取启动器设置处理器，用于获取启动器设置，并按照设置进行启动。
+    private static void mayResetChecker(ApplicationContext ctx) {
+        // 获取启动器设置处理器，用于获取启动器设置，并按照设置选择性执行功能。
         LauncherSettingHandler launcherSettingHandler = ctx.getBean(LauncherSettingHandler.class);
 
-        // 判断是否重置检查器支持。
-        if (launcherSettingHandler.isResetCheckerSupport()) {
-            LOGGER.info("重置检查器支持...");
-            CheckerSupportMaintainService maintainService = ctx.getBean(CheckerSupportMaintainService.class);
-            try {
-                maintainService.reset();
-            } catch (ServiceException e) {
-                LOGGER.warn("检查器支持重置失败，异常信息如下", e);
-            }
+        // 如果不重置检查器，则返回。
+        if (!launcherSettingHandler.isResetCheckerSupport()) {
+            return;
+        }
+
+        // 重置检查器支持。
+        LOGGER.info("重置检查器支持...");
+        SupportQosService supportQosService = ctx.getBean(SupportQosService.class);
+        try {
+            supportQosService.resetChecker();
+        } catch (ServiceException e) {
+            LOGGER.warn("检查器支持重置失败，异常信息如下", e);
         }
     }
 

@@ -4,6 +4,10 @@
 
 ### 功能构建
 
+- 优化支持实体机制。
+  - 新建支持 QoS 服务 com.dwarfeng.voucher.stack.service.SupportQosService。
+  - 将支持实体维护服务的重置功能迁移至 QoS 服务。
+
 - 依赖升级。
   - 升级 `subgrade` 依赖版本为 `1.6.0.a` 并解决兼容性问题，以规避漏洞。
   - 升级 `spring` 依赖版本为 `5.3.39` 以规避漏洞。
