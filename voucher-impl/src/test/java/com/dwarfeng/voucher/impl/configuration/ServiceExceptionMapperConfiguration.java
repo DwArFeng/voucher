@@ -16,6 +16,7 @@ public class ServiceExceptionMapperConfiguration {
     @Bean
     public MapServiceExceptionMapper mapServiceExceptionMapper() {
         Map<Class<? extends Exception>, ServiceException.Code> destination = ServiceExceptionHelper.putDefaultDestination(null);
+        destination = com.dwarfeng.datamark.util.ServiceExceptionHelper.putDefaultDestination(destination);
         destination.put(VoucherCategoryNotExistsException.class, ServiceExceptionCodes.VOUCHER_CATEGORY_NOT_EXISTS);
         destination.put(VoucherNotExistsException.class, ServiceExceptionCodes.VOUCHER_NOT_EXISTS);
         destination.put(VoucherAlreadyExistsException.class, ServiceExceptionCodes.VOUCHER_ALREADY_EXISTS);

@@ -1,5 +1,7 @@
 package com.dwarfeng.voucher.impl.bean.entity;
 
+import com.dwarfeng.datamark.bean.jpa.DatamarkEntityListener;
+import com.dwarfeng.datamark.bean.jpa.DatamarkField;
 import com.dwarfeng.subgrade.sdk.bean.key.HibernateStringIdKey;
 import com.dwarfeng.subgrade.stack.bean.Bean;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
@@ -12,9 +14,10 @@ import java.util.Set;
 @Entity
 @IdClass(HibernateStringIdKey.class)
 @Table(name = "tbl_voucher_category")
+@EntityListeners(DatamarkEntityListener.class)
 public class HibernateVoucherCategory implements Bean {
 
-    private static final long serialVersionUID = -161863665723538715L;
+    private static final long serialVersionUID = 6594776344472919224L;
 
     // -----------------------------------------------------------主键-----------------------------------------------------------
     @Id
@@ -41,6 +44,22 @@ public class HibernateVoucherCategory implements Bean {
 
     @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateVoucher.class, mappedBy = "voucherCategory")
     private Set<HibernateVoucher> vouchers = new HashSet<>();
+
+    // -----------------------------------------------------------审计-----------------------------------------------------------
+    @DatamarkField(handlerName = "voucherCategoryDatamarkHandler")
+    @Column(
+            name = "created_datamark",
+            length = com.dwarfeng.datamark.util.Constraints.LENGTH_DATAMARK_VALUE,
+            updatable = false
+    )
+    private String createdDatamark;
+
+    @DatamarkField(handlerName = "voucherCategoryDatamarkHandler")
+    @Column(
+            name = "modified_datamark",
+            length = com.dwarfeng.datamark.util.Constraints.LENGTH_DATAMARK_VALUE
+    )
+    private String modifiedDatamark;
 
     public HibernateVoucherCategory() {
     }
@@ -111,6 +130,22 @@ public class HibernateVoucherCategory implements Bean {
         this.vouchers = vouchers;
     }
 
+    public String getCreatedDatamark() {
+        return createdDatamark;
+    }
+
+    public void setCreatedDatamark(String createdDatamark) {
+        this.createdDatamark = createdDatamark;
+    }
+
+    public String getModifiedDatamark() {
+        return modifiedDatamark;
+    }
+
+    public void setModifiedDatamark(String modifiedDatamark) {
+        this.modifiedDatamark = modifiedDatamark;
+    }
+
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" +
@@ -118,6 +153,8 @@ public class HibernateVoucherCategory implements Bean {
                 "enabled = " + enabled + ", " +
                 "name = " + name + ", " +
                 "remark = " + remark + ", " +
-                "checkerInfo = " + checkerInfo + ")";
+                "checkerInfo = " + checkerInfo + ", " +
+                "createdDatamark = " + createdDatamark + ", " +
+                "modifiedDatamark = " + modifiedDatamark + ")";
     }
 }

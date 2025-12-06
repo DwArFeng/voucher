@@ -1,5 +1,7 @@
 package com.dwarfeng.voucher.impl.bean.entity;
 
+import com.dwarfeng.datamark.bean.jpa.DatamarkEntityListener;
+import com.dwarfeng.datamark.bean.jpa.DatamarkField;
 import com.dwarfeng.subgrade.sdk.bean.key.HibernateStringIdKey;
 import com.dwarfeng.subgrade.stack.bean.Bean;
 import com.dwarfeng.voucher.sdk.util.Constraints;
@@ -10,9 +12,10 @@ import java.util.Optional;
 @Entity
 @IdClass(HibernateStringIdKey.class)
 @Table(name = "tbl_checker_info")
+@EntityListeners(DatamarkEntityListener.class)
 public class HibernateCheckerInfo implements Bean {
 
-    private static final long serialVersionUID = -4185072219670506430L;
+    private static final long serialVersionUID = 8363527331527179417L;
 
     // -----------------------------------------------------------主键-----------------------------------------------------------
     @Id
@@ -38,6 +41,22 @@ public class HibernateCheckerInfo implements Bean {
             @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false), //
     })
     private HibernateVoucherCategory voucherCategory;
+
+    // -----------------------------------------------------------审计-----------------------------------------------------------
+    @DatamarkField(handlerName = "checkerInfoDatamarkHandler")
+    @Column(
+            name = "created_datamark",
+            length = com.dwarfeng.datamark.util.Constraints.LENGTH_DATAMARK_VALUE,
+            updatable = false
+    )
+    private String createdDatamark;
+
+    @DatamarkField(handlerName = "checkerInfoDatamarkHandler")
+    @Column(
+            name = "modified_datamark",
+            length = com.dwarfeng.datamark.util.Constraints.LENGTH_DATAMARK_VALUE
+    )
+    private String modifiedDatamark;
 
     public HibernateCheckerInfo() {
     }
@@ -100,6 +119,22 @@ public class HibernateCheckerInfo implements Bean {
         this.voucherCategory = voucherCategory;
     }
 
+    public String getCreatedDatamark() {
+        return createdDatamark;
+    }
+
+    public void setCreatedDatamark(String createdDatamark) {
+        this.createdDatamark = createdDatamark;
+    }
+
+    public String getModifiedDatamark() {
+        return modifiedDatamark;
+    }
+
+    public void setModifiedDatamark(String modifiedDatamark) {
+        this.modifiedDatamark = modifiedDatamark;
+    }
+
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" +
@@ -108,6 +143,8 @@ public class HibernateCheckerInfo implements Bean {
                 "type = " + type + ", " +
                 "param = " + param + ", " +
                 "remark = " + remark + ", " +
-                "voucherCategory = " + voucherCategory + ")";
+                "voucherCategory = " + voucherCategory + ", " +
+                "createdDatamark = " + createdDatamark + ", " +
+                "modifiedDatamark = " + modifiedDatamark + ")";
     }
 }

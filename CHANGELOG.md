@@ -4,6 +4,16 @@
 
 ### 功能构建
 
+- 导入运维指令。
+  - com.dwarfeng.datamark.service.telqos.*。
+
+- 增加 Hibernate 实体数据标记字段，并应用相关实体侦听器。
+  - com.dwarfeng.voucher.impl.bean.entity.HibernateCheckerInfo。
+  - com.dwarfeng.voucher.impl.bean.entity.HibernateVoucherCategory。
+
+- 增加依赖。
+  - 增加依赖 `dwarfeng-datamark` 以应用其新功能，版本为 `1.0.4.a`。
+
 - 优化部分类构造器方法中的参数名。
   - com.dwarfeng.voucher.impl.handler.pusher.AbstractPusher。
 

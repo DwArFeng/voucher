@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:datamark="http://dwarfeng.com/schema/dwarfeng-datamark"
+        xmlns="http://www.springframework.org/schema/beans"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://dwarfeng.com/schema/dwarfeng-datamark
+        http://dwarfeng.com/schema/dwarfeng-datamark/dwarfeng-datamark.xsd"
+>
+
+    <!-- VoucherCategory 数据标识 -->
+    <datamark:handler
+            handler-name="voucherCategoryDatamarkHandler"
+            resource-url="${datamark.voucher_category.resource_url}"
+            resource-charset="${datamark.voucher_category.resource_charset}"
+            update-allowed="${datamark.voucher_category.update_allowed}"
+    />
+
+    <!-- CheckerInfo 数据标识 -->
+    <datamark:handler
+            handler-name="checkerInfoDatamarkHandler"
+            resource-url="${datamark.checker_info.resource_url}"
+            resource-charset="${datamark.checker_info.resource_charset}"
+            update-allowed="${datamark.checker_info.update_allowed}"
+    />
+
+    <!-- QoS 服务 -->
+    <datamark:qos/>
+</beans>
