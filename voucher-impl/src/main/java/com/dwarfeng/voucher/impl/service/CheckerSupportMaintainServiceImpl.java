@@ -3,25 +3,18 @@ package com.dwarfeng.voucher.impl.service;
 import com.dwarfeng.subgrade.impl.service.DaoOnlyEntireLookupService;
 import com.dwarfeng.subgrade.impl.service.DaoOnlyPresetLookupService;
 import com.dwarfeng.subgrade.impl.service.GeneralBatchCrudService;
-import com.dwarfeng.subgrade.sdk.exception.ServiceExceptionHelper;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.BehaviorAnalyse;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.SkipRecord;
 import com.dwarfeng.subgrade.stack.bean.dto.PagedData;
 import com.dwarfeng.subgrade.stack.bean.dto.PagingInfo;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
 import com.dwarfeng.subgrade.stack.exception.ServiceException;
-import com.dwarfeng.subgrade.stack.exception.ServiceExceptionMapper;
-import com.dwarfeng.subgrade.stack.log.LogLevel;
-import com.dwarfeng.voucher.impl.handler.CheckerSupporter;
 import com.dwarfeng.voucher.stack.bean.entity.CheckerSupport;
 import com.dwarfeng.voucher.stack.service.CheckerSupportMaintainService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class CheckerSupportMaintainServiceImpl implements CheckerSupportMaintainService {
@@ -30,26 +23,14 @@ public class CheckerSupportMaintainServiceImpl implements CheckerSupportMaintain
     private final DaoOnlyEntireLookupService<CheckerSupport> entireLookupService;
     private final DaoOnlyPresetLookupService<CheckerSupport> presetLookupService;
 
-    private final List<CheckerSupporter> checkerSupporters;
-
-    private final ServiceExceptionMapper sem;
-
     public CheckerSupportMaintainServiceImpl(
             GeneralBatchCrudService<StringIdKey, CheckerSupport> crudService,
             DaoOnlyEntireLookupService<CheckerSupport> entireLookupService,
-            DaoOnlyPresetLookupService<CheckerSupport> presetLookupService,
-            List<CheckerSupporter> checkerSupporters,
-            ServiceExceptionMapper sem
+            DaoOnlyPresetLookupService<CheckerSupport> presetLookupService
     ) {
         this.crudService = crudService;
         this.entireLookupService = entireLookupService;
         this.presetLookupService = presetLookupService;
-        if (Objects.isNull(checkerSupporters)) {
-            this.checkerSupporters = new ArrayList<>();
-        } else {
-            this.checkerSupporters = checkerSupporters;
-        }
-        this.sem = sem;
     }
 
     @Override
@@ -244,24 +225,5 @@ public class CheckerSupportMaintainServiceImpl implements CheckerSupportMaintain
     public PagedData<CheckerSupport> lookup(String preset, Object[] objs, PagingInfo pagingInfo)
             throws ServiceException {
         return presetLookupService.lookup(preset, objs, pagingInfo);
-    }
-
-    @Override
-    @BehaviorAnalyse
-    public void reset() throws ServiceException {
-        try {
-            List<StringIdKey> checkerKeys = entireLookupService.lookup().getData().stream()
-                    .map(CheckerSupport::getKey).collect(Collectors.toList());
-            crudService.batchDelete(checkerKeys);
-            List<CheckerSupport> checkerSupports = checkerSupporters.stream().map(supporter -> new CheckerSupport(
-                    new StringIdKey(supporter.provideType()),
-                    supporter.provideLabel(),
-                    supporter.provideDescription(),
-                    supporter.provideExampleParam()
-            )).collect(Collectors.toList());
-            crudService.batchInsert(checkerSupports);
-        } catch (Exception e) {
-            throw ServiceExceptionHelper.logParse("重置格式化器支持时发生异常", LogLevel.WARN, e, sem);
-        }
     }
 }
