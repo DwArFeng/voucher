@@ -4,6 +4,14 @@
 
 ### 功能构建
 
+- 优化部分维护服务实现中的部分方法的性能。
+  - com.dwarfeng.voucher.impl.service.CheckerInfoMaintainServiceImpl。
+  - com.dwarfeng.voucher.impl.service.CheckerSupportMaintainServiceImpl。
+  - com.dwarfeng.voucher.impl.service.VoucherCategoryMaintainServiceImpl。
+  - com.dwarfeng.voucher.impl.service.VoucherCategoryVariableMaintainServiceImpl。
+  - com.dwarfeng.voucher.impl.service.VoucherMaintainServiceImpl。
+  - com.dwarfeng.voucher.impl.service.VoucherVariableMaintainServiceImpl。
+
 - 优化部分类中部分方法的行为分析行为。
   - com.dwarfeng.voucher.impl.service.CheckerInfoMaintainServiceImpl。
   - com.dwarfeng.voucher.impl.service.VoucherCategoryMaintainServiceImpl。

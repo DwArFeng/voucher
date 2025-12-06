@@ -168,8 +168,8 @@ public class VoucherMaintainServiceImpl implements VoucherMaintainService {
     @BehaviorAnalyse
     @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
-    public List<LongIdKey> batchInsertIfNotExists(@SkipRecord List<Voucher> elements) throws ServiceException {
-        return crudService.batchInsertIfNotExists(elements);
+    public List<LongIdKey> batchInsertIfNotExists(@SkipRecord List<Voucher> entities) throws ServiceException {
+        return crudService.batchInsertIfNotExists(entities);
     }
 
     @Override
@@ -224,5 +224,90 @@ public class VoucherMaintainServiceImpl implements VoucherMaintainService {
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
     public PagedData<Voucher> lookup(String preset, Object[] objs, PagingInfo pagingInfo) throws ServiceException {
         return presetLookupService.lookup(preset, objs, pagingInfo);
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @SkipRecord
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public List<Voucher> lookupAsList() throws ServiceException {
+        return entireLookupService.lookupAsList();
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @SkipRecord
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public List<Voucher> lookupAsList(PagingInfo pagingInfo) throws ServiceException {
+        return entireLookupService.lookupAsList(pagingInfo);
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public Voucher lookupFirst() throws ServiceException {
+        return entireLookupService.lookupFirst();
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public int lookupCount() throws ServiceException {
+        return entireLookupService.lookupCount();
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @SkipRecord
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public List<Voucher> lookupAsList(String preset, Object[] objs) throws ServiceException {
+        return presetLookupService.lookupAsList(preset, objs);
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @SkipRecord
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public List<Voucher> lookupAsList(String preset, Object[] objs, PagingInfo pagingInfo)
+            throws ServiceException {
+        return presetLookupService.lookupAsList(preset, objs, pagingInfo);
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public Voucher lookupFirst(String preset, Object[] objs) throws ServiceException {
+        return presetLookupService.lookupFirst(preset, objs);
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public int lookupCount(String preset, Object[] objs) throws ServiceException {
+        return presetLookupService.lookupCount(preset, objs);
     }
 }

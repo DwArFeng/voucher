@@ -11,12 +11,12 @@ import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
 import com.dwarfeng.subgrade.stack.exception.ServiceException;
 import com.dwarfeng.voucher.stack.bean.entity.CheckerInfo;
 import com.dwarfeng.voucher.stack.service.CheckerInfoMaintainService;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Component
+@Service
 public class CheckerInfoMaintainServiceImpl implements CheckerInfoMaintainService {
 
     private final GeneralBatchCrudService<StringIdKey, CheckerInfo> crudService;
@@ -168,8 +168,8 @@ public class CheckerInfoMaintainServiceImpl implements CheckerInfoMaintainServic
     @BehaviorAnalyse
     @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
-    public List<StringIdKey> batchInsertIfNotExists(@SkipRecord List<CheckerInfo> elements) throws ServiceException {
-        return crudService.batchInsertIfNotExists(elements);
+    public List<StringIdKey> batchInsertIfNotExists(@SkipRecord List<CheckerInfo> entities) throws ServiceException {
+        return crudService.batchInsertIfNotExists(entities);
     }
 
     @Override
@@ -224,5 +224,90 @@ public class CheckerInfoMaintainServiceImpl implements CheckerInfoMaintainServic
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
     public PagedData<CheckerInfo> lookup(String preset, Object[] objs, PagingInfo pagingInfo) throws ServiceException {
         return presetLookupService.lookup(preset, objs, pagingInfo);
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @SkipRecord
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public List<CheckerInfo> lookupAsList() throws ServiceException {
+        return entireLookupService.lookupAsList();
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @SkipRecord
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public List<CheckerInfo> lookupAsList(PagingInfo pagingInfo) throws ServiceException {
+        return entireLookupService.lookupAsList(pagingInfo);
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public CheckerInfo lookupFirst() throws ServiceException {
+        return entireLookupService.lookupFirst();
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public int lookupCount() throws ServiceException {
+        return entireLookupService.lookupCount();
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @SkipRecord
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public List<CheckerInfo> lookupAsList(String preset, Object[] objs) throws ServiceException {
+        return presetLookupService.lookupAsList(preset, objs);
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @SkipRecord
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public List<CheckerInfo> lookupAsList(String preset, Object[] objs, PagingInfo pagingInfo)
+            throws ServiceException {
+        return presetLookupService.lookupAsList(preset, objs, pagingInfo);
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public CheckerInfo lookupFirst(String preset, Object[] objs) throws ServiceException {
+        return presetLookupService.lookupFirst(preset, objs);
+    }
+
+    /**
+     * @since 1.1.0
+     */
+    @Override
+    @BehaviorAnalyse
+    @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
+    public int lookupCount(String preset, Object[] objs) throws ServiceException {
+        return presetLookupService.lookupCount(preset, objs);
     }
 }
