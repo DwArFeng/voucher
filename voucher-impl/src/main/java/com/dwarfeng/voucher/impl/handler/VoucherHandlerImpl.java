@@ -103,7 +103,10 @@ public class VoucherHandlerImpl implements VoucherHandler {
         voucherKey = voucherOperateHandler.create(voucherCreateInfo);
 
         // 调用检查器方法，初始化凭证。
-        checker.afterVoucherInitialize(voucherCategoryKey, voucherKey);
+        AfterVoucherInitializeInfo afterVoucherInitializeInfo = new AfterVoucherInitializeInfo(
+                voucherCategoryKey, voucherKey
+        );
+        checker.afterVoucherInitialize(afterVoucherInitializeInfo);
 
         // 返回凭证主键。
         return voucherKey;
@@ -145,7 +148,8 @@ public class VoucherHandlerImpl implements VoucherHandler {
             Checker checker, StringIdKey voucherCategoryKey, LongIdKey voucherKey, VoucherInspectInfo inspectInfo
     ) throws Exception {
         // 调用检查器方法，检查凭证。
-        checker.doVoucherValidCheck(voucherCategoryKey, voucherKey);
+        VoucherValidCheckInfo voucherValidCheckInfo = new VoucherValidCheckInfo(voucherCategoryKey, voucherKey);
+        checker.voucherValidCheck(voucherValidCheckInfo);
 
         // 获取最新的凭证实体。
         Voucher voucher = voucherMaintainService.getIfExists(voucherKey);
@@ -153,7 +157,10 @@ public class VoucherHandlerImpl implements VoucherHandler {
         // 如果凭证为 null 或无效，则抛出相应异常。
         if (Objects.isNull(voucher) || !voucher.isValid()) {
             // 调用检查器相应方法。
-            checker.afterVoucherInspectFailed(voucherCategoryKey, voucherKey);
+            AfterVoucherInspectFailedInfo afterVoucherInspectFailedInfo = new AfterVoucherInspectFailedInfo(
+                    voucherCategoryKey, voucherKey
+            );
+            checker.afterVoucherInspectFailed(afterVoucherInspectFailedInfo);
             // 抛出 InvalidVoucherException。
             throw new InvalidVoucherException(voucherKey);
         }
@@ -164,13 +171,19 @@ public class VoucherHandlerImpl implements VoucherHandler {
             voucherInspectResult = voucherOperateHandler.inspect(inspectInfo);
         } catch (Exception e) {
             // 调用检查器相应方法。
-            checker.afterVoucherInspectFailed(voucherCategoryKey, voucherKey);
+            AfterVoucherInspectFailedInfo afterVoucherInspectFailedInfo = new AfterVoucherInspectFailedInfo(
+                    voucherCategoryKey, voucherKey
+            );
+            checker.afterVoucherInspectFailed(afterVoucherInspectFailedInfo);
             // 抛出异常。
             throw e;
         }
 
         // 调用检查器相应方法。
-        checker.afterVoucherInspectSucceed(voucherCategoryKey, voucherKey);
+        AfterVoucherInspectSucceedInfo afterVoucherInspectSucceedInfo = new AfterVoucherInspectSucceedInfo(
+                voucherCategoryKey, voucherKey
+        );
+        checker.afterVoucherInspectSucceed(afterVoucherInspectSucceedInfo);
 
         // 返回结果。
         return voucherInspectResult;
@@ -273,7 +286,8 @@ public class VoucherHandlerImpl implements VoucherHandler {
     private void checkSingleVoucherValidTask(Checker checker, StringIdKey voucherCategoryKey, LongIdKey voucherKey)
             throws Exception {
         // 调用检查器方法，检查凭证。
-        checker.doVoucherValidCheck(voucherCategoryKey, voucherKey);
+        VoucherValidCheckInfo voucherValidCheckInfo = new VoucherValidCheckInfo(voucherCategoryKey, voucherKey);
+        checker.voucherValidCheck(voucherValidCheckInfo);
     }
 
     @Override

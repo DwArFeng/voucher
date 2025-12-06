@@ -2,12 +2,13 @@ package com.dwarfeng.voucher.impl.handler.checker;
 
 import com.dwarfeng.dutil.basic.io.IOUtil;
 import com.dwarfeng.dutil.basic.io.StringOutputStream;
-import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
-import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
 import com.dwarfeng.voucher.sdk.handler.checker.AbstractChecker;
 import com.dwarfeng.voucher.sdk.handler.checker.AbstractCheckerRegistry;
+import com.dwarfeng.voucher.stack.bean.dto.AfterVoucherInitializeInfo;
+import com.dwarfeng.voucher.stack.bean.dto.AfterVoucherInspectFailedInfo;
+import com.dwarfeng.voucher.stack.bean.dto.AfterVoucherInspectSucceedInfo;
+import com.dwarfeng.voucher.stack.bean.dto.VoucherValidCheckInfo;
 import com.dwarfeng.voucher.stack.exception.CheckerException;
-import com.dwarfeng.voucher.stack.exception.CheckerExecutionException;
 import com.dwarfeng.voucher.stack.exception.CheckerMakeException;
 import com.dwarfeng.voucher.stack.handler.Checker;
 import com.dwarfeng.voucher.stack.handler.Checker.Context;
@@ -105,43 +106,23 @@ public class GroovyCheckerRegistry extends AbstractCheckerRegistry {
         }
 
         @Override
-        public void afterVoucherInitialize(StringIdKey voucherCategoryKey, LongIdKey voucherKey)
-                throws CheckerException {
-            try {
-                processor.afterVoucherInitialize(context, voucherCategoryKey, voucherKey);
-            } catch (Exception e) {
-                throw new CheckerExecutionException(e);
-            }
+        public void doAfterVoucherInitialize(AfterVoucherInitializeInfo info) throws Exception {
+            processor.afterVoucherInitialize(context, info);
         }
 
         @Override
-        public void doVoucherValidCheck(StringIdKey voucherCategoryKey, LongIdKey voucherKey)
-                throws CheckerException {
-            try {
-                processor.doVoucherValidCheck(context, voucherCategoryKey, voucherKey);
-            } catch (Exception e) {
-                throw new CheckerExecutionException(e);
-            }
+        public void doVoucherValidCheck(VoucherValidCheckInfo info) throws Exception {
+            processor.doVoucherValidCheck(context, info);
         }
 
         @Override
-        public void afterVoucherInspectSucceed(StringIdKey voucherCategoryKey, LongIdKey voucherKey)
-                throws CheckerException {
-            try {
-                processor.afterVoucherInspectSucceed(context, voucherCategoryKey, voucherKey);
-            } catch (Exception e) {
-                throw new CheckerExecutionException(e);
-            }
+        public void doAfterVoucherInspectSucceed(AfterVoucherInspectSucceedInfo info) throws Exception {
+            processor.afterVoucherInspectSucceed(context, info);
         }
 
         @Override
-        public void afterVoucherInspectFailed(StringIdKey voucherCategoryKey, LongIdKey voucherKey)
-                throws CheckerException {
-            try {
-                processor.afterVoucherInspectFailed(context, voucherCategoryKey, voucherKey);
-            } catch (Exception e) {
-                throw new CheckerExecutionException(e);
-            }
+        public void doAfterVoucherInspectFailed(AfterVoucherInspectFailedInfo info) throws Exception {
+            processor.afterVoucherInspectFailed(context, info);
         }
 
         @Override
@@ -167,14 +148,11 @@ public class GroovyCheckerRegistry extends AbstractCheckerRegistry {
          * <p>
          * 该方法在凭证初始化后被调用，检查器可以在该方法中进行一些初始化后的操作，如设置一些凭证变量等。
          *
-         * @param context            检查器上下文。
-         * @param voucherCategoryKey 凭证类型的主键。
-         * @param voucherKey         凭证的主键。
+         * @param context 检查器上下文。
+         * @param info    凭证初始化后回调信息。
          * @throws Exception 方法执行时抛出的任何异常。
          */
-        void afterVoucherInitialize(
-                Context context, StringIdKey voucherCategoryKey, LongIdKey voucherKey
-        ) throws Exception;
+        void afterVoucherInitialize(Context context, AfterVoucherInitializeInfo info) throws Exception;
 
         /**
          * 检查凭证是否有效。
@@ -187,14 +165,11 @@ public class GroovyCheckerRegistry extends AbstractCheckerRegistry {
          * <code>context</code> 对象在检查器初始化后通过 <code>init</code> 方法传入，检查器应该妥善持有该对象，
          * 以便在此时使用。
          *
-         * @param context            检查器上下文。
-         * @param voucherCategoryKey 凭证类型的主键。
-         * @param voucherKey         凭证的主键。
+         * @param context 检查器上下文。
+         * @param info    凭证有效性检查信息。
          * @throws Exception 方法执行时抛出的任何异常。
          */
-        void doVoucherValidCheck(
-                Context context, StringIdKey voucherCategoryKey, LongIdKey voucherKey
-        ) throws Exception;
+        void doVoucherValidCheck(Context context, VoucherValidCheckInfo info) throws Exception;
 
         /**
          * 凭证查看成功后回调方法。
@@ -205,14 +180,11 @@ public class GroovyCheckerRegistry extends AbstractCheckerRegistry {
          * 等待下一次 <code>doVoucherValidCheck</code> 方法被调用时再作废凭证。
          * <code>context</code> 对象在检查器初始化后通过 <code>init</code> 方法传入，检查器应该妥善持有该对象，以便在此时使用。
          *
-         * @param context            检查器上下文。
-         * @param voucherCategoryKey 凭证类型的主键。
-         * @param voucherKey         凭证的主键。
+         * @param context 检查器上下文。
+         * @param info    凭证查看成功后回调信息。
          * @throws Exception 方法执行时抛出的任何异常。
          */
-        void afterVoucherInspectSucceed(
-                Context context, StringIdKey voucherCategoryKey, LongIdKey voucherKey
-        ) throws Exception;
+        void afterVoucherInspectSucceed(Context context, AfterVoucherInspectSucceedInfo info) throws Exception;
 
         /**
          * 凭证查看失败后回调方法。
@@ -223,13 +195,10 @@ public class GroovyCheckerRegistry extends AbstractCheckerRegistry {
          * 等待下一次 <code>doVoucherValidCheck</code> 方法被调用时再作废凭证。
          * <code>context</code> 对象在检查器初始化后通过 <code>init</code> 方法传入，检查器应该妥善持有该对象，以便在此时使用。
          *
-         * @param context            检查器上下文。
-         * @param voucherCategoryKey 凭证类型的主键。
-         * @param voucherKey         凭证的主键。
+         * @param context 检查器上下文。
+         * @param info    凭证查看失败后回调信息。
          * @throws Exception 方法执行时抛出的任何异常。
          */
-        void afterVoucherInspectFailed(
-                Context context, StringIdKey voucherCategoryKey, LongIdKey voucherKey
-        ) throws Exception;
+        void afterVoucherInspectFailed(Context context, AfterVoucherInspectFailedInfo info) throws Exception;
     }
 }

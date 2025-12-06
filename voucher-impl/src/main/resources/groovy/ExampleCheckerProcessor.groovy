@@ -1,6 +1,9 @@
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey
-import com.dwarfeng.subgrade.stack.bean.key.StringIdKey
 import com.dwarfeng.voucher.impl.handler.checker.GroovyCheckerRegistry
+import com.dwarfeng.voucher.stack.bean.dto.AfterVoucherInitializeInfo
+import com.dwarfeng.voucher.stack.bean.dto.AfterVoucherInspectFailedInfo
+import com.dwarfeng.voucher.stack.bean.dto.AfterVoucherInspectSucceedInfo
+import com.dwarfeng.voucher.stack.bean.dto.VoucherValidCheckInfo
 import com.dwarfeng.voucher.stack.handler.Checker
 
 /**
@@ -20,20 +23,22 @@ class ExampleCheckerProcessor implements GroovyCheckerRegistry.Processor {
     private static final String VARIABLE_ID_RANDOM_NUMBER = "random_number"
 
     @Override
-    void afterVoucherInitialize(Checker.Context context, StringIdKey voucherCategoryKey, LongIdKey voucherKey)
-            throws Exception {
+    void afterVoucherInitialize(Checker.Context context, AfterVoucherInitializeInfo info) throws Exception {
+        // 展开参数。
+        LongIdKey voucherKey = info.getVoucherKey()
         int randomInt = new Random().nextInt()
         context.putVoucherVariable(voucherKey, VARIABLE_ID_RANDOM_NUMBER, Integer.toString(randomInt))
     }
 
     @Override
-    void doVoucherValidCheck(Checker.Context context, StringIdKey voucherCategoryKey, LongIdKey voucherKey) {
+    void doVoucherValidCheck(Checker.Context context, VoucherValidCheckInfo info) {
         // 不做任何操作。
     }
 
     @Override
-    void afterVoucherInspectSucceed(Checker.Context context, StringIdKey voucherCategoryKey, LongIdKey voucherKey)
-            throws Exception {
+    void afterVoucherInspectSucceed(Checker.Context context, AfterVoucherInspectSucceedInfo info) throws Exception {
+        // 展开参数。
+        LongIdKey voucherKey = info.getVoucherKey()
         int randomInt = new Random().nextInt()
         String neoRandomNumberString = context.inspectVoucherVariableOrDefault(
                 voucherKey, VARIABLE_ID_RANDOM_NUMBER, "0"
@@ -45,7 +50,7 @@ class ExampleCheckerProcessor implements GroovyCheckerRegistry.Processor {
     }
 
     @Override
-    void afterVoucherInspectFailed(Checker.Context context, StringIdKey voucherCategoryKey, LongIdKey voucherKey) {
+    void afterVoucherInspectFailed(Checker.Context context, AfterVoucherInspectFailedInfo info) {
         // 不做任何操作。
     }
 }

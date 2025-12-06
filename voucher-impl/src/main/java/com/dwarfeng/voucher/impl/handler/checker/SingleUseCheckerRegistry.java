@@ -4,9 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.dwarfeng.subgrade.stack.bean.Bean;
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
-import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
 import com.dwarfeng.voucher.sdk.handler.checker.AbstractChecker;
 import com.dwarfeng.voucher.sdk.handler.checker.AbstractCheckerRegistry;
+import com.dwarfeng.voucher.stack.bean.dto.AfterVoucherInitializeInfo;
+import com.dwarfeng.voucher.stack.bean.dto.AfterVoucherInspectFailedInfo;
+import com.dwarfeng.voucher.stack.bean.dto.AfterVoucherInspectSucceedInfo;
+import com.dwarfeng.voucher.stack.bean.dto.VoucherValidCheckInfo;
 import com.dwarfeng.voucher.stack.exception.CheckerException;
 import com.dwarfeng.voucher.stack.exception.CheckerMakeException;
 import com.dwarfeng.voucher.stack.handler.Checker;
@@ -80,63 +83,43 @@ public class SingleUseCheckerRegistry extends AbstractCheckerRegistry {
         }
 
         @Override
-        public void afterVoucherInitialize(StringIdKey voucherCategoryKey, LongIdKey voucherKey)
-                throws CheckerException {
-            try {
-                // 计算过期日期对应的时间戳文本，如果永不过期，则时间戳文本为空字符串。
-                String expireTimestampString;
-                long expireDateOffset = config.getExpireDateOffset();
-                if (expireDateOffset <= 0) {
-                    expireTimestampString = StringUtils.EMPTY;
-                } else {
-                    expireTimestampString = String.valueOf(System.currentTimeMillis() + expireDateOffset);
-                }
-                // 设置变量。
-                context.putVoucherVariable(voucherKey, VARIABLE_ID_EXPIRE_TIMESTAMP, expireTimestampString);
-            } catch (CheckerException e) {
-                throw e;
-            } catch (Exception e) {
-                throw new CheckerException(e);
+        public void doAfterVoucherInitialize(AfterVoucherInitializeInfo info) throws Exception {
+            // 展开参数。
+            LongIdKey voucherKey = info.getVoucherKey();
+            // 计算过期日期对应的时间戳文本，如果永不过期，则时间戳文本为空字符串。
+            String expireTimestampString;
+            long expireDateOffset = config.getExpireDateOffset();
+            if (expireDateOffset <= 0) {
+                expireTimestampString = StringUtils.EMPTY;
+            } else {
+                expireTimestampString = String.valueOf(System.currentTimeMillis() + expireDateOffset);
             }
+            // 设置变量。
+            context.putVoucherVariable(voucherKey, VARIABLE_ID_EXPIRE_TIMESTAMP, expireTimestampString);
         }
 
         @Override
-        public void doVoucherValidCheck(StringIdKey voucherCategoryKey, LongIdKey voucherKey)
-                throws CheckerException {
-            try {
-                // 检查是否过期，如果过期，则标记为失效。
-                invalidIfExpired(voucherKey);
-            } catch (CheckerException e) {
-                throw e;
-            } catch (Exception e) {
-                throw new CheckerException(e);
-            }
+        public void doVoucherValidCheck(VoucherValidCheckInfo info) throws Exception {
+            // 展开参数。
+            LongIdKey voucherKey = info.getVoucherKey();
+            // 检查是否过期，如果过期，则标记为失效。
+            invalidIfExpired(voucherKey);
         }
 
         @Override
-        public void afterVoucherInspectSucceed(StringIdKey voucherCategoryKey, LongIdKey voucherKey)
-                throws CheckerException {
-            try {
-                // 因为凭据是一次性使用的，所以查看成功后直接标记为失效。
-                context.invalidVoucher(voucherKey);
-            } catch (CheckerException e) {
-                throw e;
-            } catch (Exception e) {
-                throw new CheckerException(e);
-            }
+        public void doAfterVoucherInspectSucceed(AfterVoucherInspectSucceedInfo info) throws Exception {
+            // 展开参数。
+            LongIdKey voucherKey = info.getVoucherKey();
+            // 因为凭据是一次性使用的，所以查看成功后直接标记为失效。
+            context.invalidVoucher(voucherKey);
         }
 
         @Override
-        public void afterVoucherInspectFailed(StringIdKey voucherCategoryKey, LongIdKey voucherKey)
-                throws CheckerException {
-            try {
-                // 检查是否过期，如果过期，则标记为失效。
-                invalidIfExpired(voucherKey);
-            } catch (CheckerException e) {
-                throw e;
-            } catch (Exception e) {
-                throw new CheckerException(e);
-            }
+        public void doAfterVoucherInspectFailed(AfterVoucherInspectFailedInfo info) throws Exception {
+            // 展开参数。
+            LongIdKey voucherKey = info.getVoucherKey();
+            // 检查是否过期，如果过期，则标记为失效。
+            invalidIfExpired(voucherKey);
         }
 
         private void invalidIfExpired(LongIdKey voucherKey) throws Exception {

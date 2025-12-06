@@ -2,6 +2,10 @@ package com.dwarfeng.voucher.stack.handler;
 
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
+import com.dwarfeng.voucher.stack.bean.dto.AfterVoucherInitializeInfo;
+import com.dwarfeng.voucher.stack.bean.dto.AfterVoucherInspectFailedInfo;
+import com.dwarfeng.voucher.stack.bean.dto.AfterVoucherInspectSucceedInfo;
+import com.dwarfeng.voucher.stack.bean.dto.VoucherValidCheckInfo;
 import com.dwarfeng.voucher.stack.exception.CheckerException;
 
 import javax.annotation.Nullable;
@@ -31,11 +35,11 @@ public interface Checker {
      * <p>
      * 该方法在凭证初始化后被调用，检查器可以在该方法中进行一些初始化后的操作，如设置一些凭证变量等。
      *
-     * @param voucherCategoryKey 凭证类型的主键。
-     * @param voucherKey         凭证的主键。
+     * @param info 凭证初始化后回调信息。
      * @throws CheckerException 检查器异常。
+     * @since 1.1.0
      */
-    void afterVoucherInitialize(StringIdKey voucherCategoryKey, LongIdKey voucherKey) throws CheckerException;
+    void afterVoucherInitialize(AfterVoucherInitializeInfo info) throws CheckerException;
 
     /**
      * 检查凭证是否有效。
@@ -47,11 +51,11 @@ public interface Checker {
      * 如果凭证无效，则需要调用 <code>context.invalidVoucher</code> 方法作废凭证。<br>
      * <code>context</code> 对象在检查器初始化后通过 <code>init</code> 方法传入，检查器应该妥善持有该对象，以便在此时使用。
      *
-     * @param voucherCategoryKey 凭证类型的主键。
-     * @param voucherKey         凭证的主键。
+     * @param info 凭证有效性检查信息。
      * @throws CheckerException 检查器异常。
+     * @since 1.1.0
      */
-    void doVoucherValidCheck(StringIdKey voucherCategoryKey, LongIdKey voucherKey) throws CheckerException;
+    void voucherValidCheck(VoucherValidCheckInfo info) throws CheckerException;
 
     /**
      * 凭证查看成功后回调方法。
@@ -59,14 +63,14 @@ public interface Checker {
      * <p>
      * 该方法在凭证查看成功后被调用，检查器可以在该方法中进行一些查看成功后的操作，如设置一些凭证变量等。<br>
      * 如果凭证在查看成功后失效，则可以调用 <code>context.invalidVoucher</code> 方法作废凭证，也可以不做任何操作，
-     * 等待下一次 <code>doVoucherValidCheck</code> 方法被调用时再作废凭证。
+     * 等待下一次 <code>voucherValidCheck</code> 方法被调用时再作废凭证。
      * <code>context</code> 对象在检查器初始化后通过 <code>init</code> 方法传入，检查器应该妥善持有该对象，以便在此时使用。
      *
-     * @param voucherCategoryKey 凭证类型的主键。
-     * @param voucherKey         凭证的主键。
+     * @param info 凭证查看成功后回调信息。
      * @throws CheckerException 检查器异常。
+     * @since 1.1.0
      */
-    void afterVoucherInspectSucceed(StringIdKey voucherCategoryKey, LongIdKey voucherKey) throws CheckerException;
+    void afterVoucherInspectSucceed(AfterVoucherInspectSucceedInfo info) throws CheckerException;
 
     /**
      * 凭证查看失败后回调方法。
@@ -74,14 +78,14 @@ public interface Checker {
      * <p>
      * 该方法在凭证查看失败后被调用，检查器可以在该方法中进行一些查看失败后的操作，如设置一些凭证变量等。<br>
      * 如果凭证在查看失败后失效，则可以调用 <code>context.invalidVoucher</code> 方法作废凭证，也可以不做任何操作，
-     * 等待下一次 <code>doVoucherValidCheck</code> 方法被调用时再作废凭证。
+     * 等待下一次 <code>voucherValidCheck</code> 方法被调用时再作废凭证。
      * <code>context</code> 对象在检查器初始化后通过 <code>init</code> 方法传入，检查器应该妥善持有该对象，以便在此时使用。
      *
-     * @param voucherCategoryKey 凭证类型的主键。
-     * @param voucherKey         凭证的主键。
+     * @param info 凭证查看失败后回调信息。
      * @throws CheckerException 检查器异常。
+     * @since 1.1.0
      */
-    void afterVoucherInspectFailed(StringIdKey voucherCategoryKey, LongIdKey voucherKey) throws CheckerException;
+    void afterVoucherInspectFailed(AfterVoucherInspectFailedInfo info) throws CheckerException;
 
     /**
      * 检查器上下文。
@@ -92,10 +96,10 @@ public interface Checker {
      * <p>
      * 需要注意的是，该上下文只能在检查器的规定方法中使用，不能在其他地方使用:
      * <ul>
-     *     <li>在 {@link #afterVoucherInitialize(StringIdKey, LongIdKey)} 方法中使用。</li>
-     *     <li>在 {@link #doVoucherValidCheck(StringIdKey, LongIdKey)} 方法中使用。</li>
-     *     <li>在 {@link #afterVoucherInspectSucceed(StringIdKey, LongIdKey)} 方法中使用。</li>
-     *     <li>在 {@link #afterVoucherInspectFailed(StringIdKey, LongIdKey)} 方法中使用。</li>
+     *     <li>在 {@link #afterVoucherInitialize(AfterVoucherInitializeInfo)} 方法中使用。</li>
+     *     <li>在 {@link #voucherValidCheck(VoucherValidCheckInfo)} 方法中使用。</li>
+     *     <li>在 {@link #afterVoucherInspectSucceed(AfterVoucherInspectSucceedInfo)} 方法中使用。</li>
+     *     <li>在 {@link #afterVoucherInspectFailed(AfterVoucherInspectFailedInfo)} 方法中使用。</li>
      * </ul>
      * 并且，该上下文中方法的凭证类型的主键以及凭证的主键等参数只能是从以上方法中传入的参数。
      * 即检查器上下文不能查询以上方法传入的参数之外的凭证类型或凭证。<br>

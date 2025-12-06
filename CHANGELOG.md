@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- 重构检查机制。
+  - 将检查器接口的方法参数从多个独立参数改为使用 DTO 对象，提高接口的可扩展性。
+
 - 优化部分代码的文档注释。
   - com.dwarfeng.voucher.stack.handler.VoucherHandler。
   - com.dwarfeng.voucher.stack.service.VoucherQosService。
