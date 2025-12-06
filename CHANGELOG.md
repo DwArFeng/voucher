@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- 为部分工具类中方法的入口参数增加 `@Nonnull` 注解。
+  - com.dwarfeng.voucher.impl.service.telqos.CommandUtil。
+
 - 优化部分运维指令的标识符。
   - com.dwarfeng.voucher.impl.service.telqos.CheckLocalCacheCommand。
 
