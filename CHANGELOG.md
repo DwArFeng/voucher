@@ -81,6 +81,9 @@
 
 ### Bug 修复
 
+- 修复 telqos 工具类中部分注解不正确的 bug。
+  - com.dwarfeng.voucher.impl.service.telqos.CommandUtil。
+
 - 修复部分功能启动延时为 0 时行为不正确的 bug。
   - 清理服务启动。
 
