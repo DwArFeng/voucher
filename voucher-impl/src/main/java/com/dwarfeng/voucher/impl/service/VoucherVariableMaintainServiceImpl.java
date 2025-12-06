@@ -4,6 +4,7 @@ import com.dwarfeng.subgrade.impl.service.DaoOnlyEntireLookupService;
 import com.dwarfeng.subgrade.impl.service.DaoOnlyPresetLookupService;
 import com.dwarfeng.subgrade.impl.service.GeneralBatchCrudService;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.BehaviorAnalyse;
+import com.dwarfeng.subgrade.sdk.interceptor.analyse.SkipRecord;
 import com.dwarfeng.subgrade.stack.bean.dto.PagedData;
 import com.dwarfeng.subgrade.stack.bean.dto.PagingInfo;
 import com.dwarfeng.subgrade.stack.exception.ServiceException;
@@ -105,90 +106,100 @@ public class VoucherVariableMaintainServiceImpl implements VoucherVariableMainta
     @Override
     @BehaviorAnalyse
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
-    public boolean allExists(List<VoucherVariableKey> keys) throws ServiceException {
+    public boolean allExists(@SkipRecord List<VoucherVariableKey> keys) throws ServiceException {
         return crudService.allExists(keys);
     }
 
     @Override
     @BehaviorAnalyse
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
-    public boolean nonExists(List<VoucherVariableKey> keys) throws ServiceException {
+    public boolean nonExists(@SkipRecord List<VoucherVariableKey> keys) throws ServiceException {
         return crudService.nonExists(keys);
     }
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
-    public List<VoucherVariable> batchGet(List<VoucherVariableKey> keys) throws ServiceException {
+    public List<VoucherVariable> batchGet(@SkipRecord List<VoucherVariableKey> keys) throws ServiceException {
         return crudService.batchGet(keys);
     }
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
-    public List<VoucherVariableKey> batchInsert(List<VoucherVariable> elements) throws ServiceException {
+    public List<VoucherVariableKey> batchInsert(@SkipRecord List<VoucherVariable> elements) throws ServiceException {
         return crudService.batchInsert(elements);
     }
 
     @Override
     @BehaviorAnalyse
     @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
-    public void batchUpdate(List<VoucherVariable> elements) throws ServiceException {
+    public void batchUpdate(@SkipRecord List<VoucherVariable> elements) throws ServiceException {
         crudService.batchUpdate(elements);
     }
 
     @Override
     @BehaviorAnalyse
     @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
-    public void batchDelete(List<VoucherVariableKey> keys) throws ServiceException {
+    public void batchDelete(@SkipRecord List<VoucherVariableKey> keys) throws ServiceException {
         crudService.batchDelete(keys);
     }
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
-    public List<VoucherVariable> batchGetIfExists(List<VoucherVariableKey> keys) throws ServiceException {
+    public List<VoucherVariable> batchGetIfExists(@SkipRecord List<VoucherVariableKey> keys) throws ServiceException {
         return crudService.batchGetIfExists(keys);
     }
 
     @Deprecated
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
-    public List<VoucherVariableKey> batchInsertIfExists(List<VoucherVariable> elements) throws ServiceException {
+    public List<VoucherVariableKey> batchInsertIfExists(@SkipRecord List<VoucherVariable> elements)
+            throws ServiceException {
         return crudService.batchInsertIfExists(elements);
     }
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
-    public List<VoucherVariableKey> batchInsertIfNotExists(List<VoucherVariable> elements) throws ServiceException {
+    public List<VoucherVariableKey> batchInsertIfNotExists(@SkipRecord List<VoucherVariable> elements)
+            throws ServiceException {
         return crudService.batchInsertIfNotExists(elements);
     }
 
     @Override
     @BehaviorAnalyse
     @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
-    public void batchUpdateIfExists(List<VoucherVariable> elements) throws ServiceException {
+    public void batchUpdateIfExists(@SkipRecord List<VoucherVariable> elements) throws ServiceException {
         crudService.batchUpdateIfExists(elements);
     }
 
     @Override
     @BehaviorAnalyse
     @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
-    public void batchDeleteIfExists(List<VoucherVariableKey> keys) throws ServiceException {
+    public void batchDeleteIfExists(@SkipRecord List<VoucherVariableKey> keys) throws ServiceException {
         crudService.batchDeleteIfExists(keys);
     }
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
-    public List<VoucherVariableKey> batchInsertOrUpdate(List<VoucherVariable> elements) throws ServiceException {
+    public List<VoucherVariableKey> batchInsertOrUpdate(@SkipRecord List<VoucherVariable> elements)
+            throws ServiceException {
         return crudService.batchInsertOrUpdate(elements);
     }
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
     public PagedData<VoucherVariable> lookup() throws ServiceException {
         return entireLookupService.lookup();
@@ -196,6 +207,7 @@ public class VoucherVariableMaintainServiceImpl implements VoucherVariableMainta
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
     public PagedData<VoucherVariable> lookup(PagingInfo pagingInfo) throws ServiceException {
         return entireLookupService.lookup(pagingInfo);
@@ -203,6 +215,7 @@ public class VoucherVariableMaintainServiceImpl implements VoucherVariableMainta
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
     public PagedData<VoucherVariable> lookup(String preset, Object[] objs) throws ServiceException {
         return presetLookupService.lookup(preset, objs);
@@ -210,6 +223,7 @@ public class VoucherVariableMaintainServiceImpl implements VoucherVariableMainta
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
     public PagedData<VoucherVariable> lookup(String preset, Object[] objs, PagingInfo pagingInfo)
             throws ServiceException {
