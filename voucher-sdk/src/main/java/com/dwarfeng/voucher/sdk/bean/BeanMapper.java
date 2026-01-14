@@ -113,7 +113,7 @@ public interface BeanMapper {
     @InheritInverseConfiguration
     VoucherCategory voucherCategoryFromWebInput(WebInputVoucherCategory webInputVoucherCategory);
 
-    // -----------------------------------------------------------Settingrepo DTO-----------------------------------------------------------
+    // -----------------------------------------------------------Voucher DTO-----------------------------------------------------------
     FastJsonVoucherInspectResult voucherInspectResultToFastJson(VoucherInspectResult voucherInspectResult);
 
     @InheritInverseConfiguration
