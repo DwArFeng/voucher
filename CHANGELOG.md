@@ -4,6 +4,10 @@
 
 ### 功能构建
 
+- `voucher-impl` 子模块类优化注释、文档注释格式、代码换行格式。
+  - com.dwarfeng.voucher.impl.handler.checker.GroovyCheckerRegistry。
+  - com.dwarfeng.voucher.impl.handler.pusher.NativeKafkaPusher。
+
 - 优化文件格式。
   - 优化 `*.properties` 文件的格式。
   - 优化 `opt-*.xml` 文件的格式。

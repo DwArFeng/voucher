@@ -80,7 +80,7 @@ public class NativeKafkaPusher extends AbstractPusher {
 
         @Bean("nativeKafkaPusher.producerProperties")
         public Map<String, Object> producerProperties() {
-            LOGGER.info("配置Kafka生产者属性...");
+            LOGGER.info("配置 Kafka 生产者属性...");
             Map<String, Object> props = new HashMap<>();
             props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, producerBootstrapServers);
             props.put(ProducerConfig.RETRIES_CONFIG, retries);
@@ -88,7 +88,7 @@ public class NativeKafkaPusher extends AbstractPusher {
             props.put(ProducerConfig.LINGER_MS_CONFIG, linger);
             props.put(ProducerConfig.BUFFER_MEMORY_CONFIG, bufferMemory);
             props.put(ProducerConfig.ACKS_CONFIG, acks);
-            LOGGER.debug("Kafka生产者属性配置完成...");
+            LOGGER.debug("Kafka 生产者属性配置完成...");
             return props;
         }
 

@@ -46,12 +46,12 @@ public class GroovyCheckerRegistry extends AbstractCheckerRegistry {
 
     @Override
     public String provideLabel() {
-        return "Groovy检查器";
+        return "Groovy 检查器";
     }
 
     @Override
     public String provideDescription() {
-        return "通过自定义的Groovy脚本对数据进行判断。";
+        return "通过自定义的 Groovy 脚本对数据进行判断。";
     }
 
     @Override
@@ -77,7 +77,7 @@ public class GroovyCheckerRegistry extends AbstractCheckerRegistry {
     @Override
     public Checker makeChecker(String type, String param) throws CheckerException {
         try (GroovyClassLoader classLoader = new GroovyClassLoader()) {
-            // 通过Groovy脚本生成处理器。
+            // 通过 Groovy 脚本生成处理器。
             Class<?> aClass = classLoader.parseClass(param);
             Processor processor = (Processor) aClass.newInstance();
             // 构建过滤器对象。
@@ -135,7 +135,7 @@ public class GroovyCheckerRegistry extends AbstractCheckerRegistry {
     }
 
     /**
-     * Groovy处理器。
+     * Groovy 处理器。
      *
      * @author DwArFeng
      * @since 1.0.0
