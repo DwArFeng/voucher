@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- 实现运维指令。
+  - com.dwarfeng.voucher.impl.service.telqos.SupportCommand。
+
 - 依赖升级。
   - 升级 `kafka` 依赖版本为 `3.9.1` 以规避漏洞。
   - 升级 `spring-kafka` 依赖版本为 `2.9.13` 以规避漏洞。
