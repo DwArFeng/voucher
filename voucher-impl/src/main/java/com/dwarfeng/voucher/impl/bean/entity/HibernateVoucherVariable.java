@@ -15,7 +15,8 @@ public class HibernateVoucherVariable implements Bean {
 
     private static final long serialVersionUID = -3101376475434882262L;
 
-    // -----------------------------------------------------------主键-----------------------------------------------------------
+    // region 主键
+
     @Id
     @Column(name = "voucher_id", nullable = false)
     private Long voucherId;
@@ -24,7 +25,10 @@ public class HibernateVoucherVariable implements Bean {
     @Column(name = "variable_id", length = Constraints.LENGTH_VARIABLE_ID, nullable = false)
     private String variableId;
 
-    // -----------------------------------------------------------主属性字段-----------------------------------------------------------
+    // endregion
+
+    // region 主属性字段
+
     @Column(name = "value", columnDefinition = "TEXT")
     private String value;
 
@@ -32,17 +36,23 @@ public class HibernateVoucherVariable implements Bean {
     @Column(name = "last_updated_date")
     private Date lastUpdatedDate;
 
-    // -----------------------------------------------------------多对一-----------------------------------------------------------
+    // endregion
+
+    // region 多对一
+
     @ManyToOne(targetEntity = HibernateVoucher.class)
     @JoinColumns({ //
             @JoinColumn(name = "voucher_id", referencedColumnName = "id", insertable = false, updatable = false), //
     })
     private HibernateVoucher voucher;
 
+    // endregion
+
     public HibernateVoucherVariable() {
     }
 
-    // -----------------------------------------------------------映射用属性区-----------------------------------------------------------
+    // region 映射用属性区
+
     public HibernateVoucherVariableKey getKey() {
         return new HibernateVoucherVariableKey(voucherId, variableId);
     }
@@ -57,7 +67,10 @@ public class HibernateVoucherVariable implements Bean {
         }
     }
 
-    // -----------------------------------------------------------常规属性区-----------------------------------------------------------
+    // endregion
+
+    // region 常规属性区
+
     public Long getVoucherId() {
         return voucherId;
     }
@@ -97,6 +110,8 @@ public class HibernateVoucherVariable implements Bean {
     public void setVoucher(HibernateVoucher voucher) {
         this.voucher = voucher;
     }
+
+    // endregion
 
     @Override
     public String toString() {

@@ -19,12 +19,16 @@ public class HibernateVoucherCategory implements Bean {
 
     private static final long serialVersionUID = 6594776344472919224L;
 
-    // -----------------------------------------------------------主键-----------------------------------------------------------
+    // region 主键
+
     @Id
     @Column(name = "id", length = Constraints.LENGTH_TYPE, nullable = false, unique = true)
     private String stringId;
 
-    // -----------------------------------------------------------主属性字段-----------------------------------------------------------
+    // endregion
+
+    // region 主属性字段
+
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
@@ -34,18 +38,27 @@ public class HibernateVoucherCategory implements Bean {
     @Column(name = "remark", length = Constraints.LENGTH_REMARK)
     private String remark;
 
-    // -----------------------------------------------------------一对一-----------------------------------------------------------
+    // endregion
+
+    // region 一对一
+
     @OneToOne(cascade = CascadeType.MERGE, targetEntity = HibernateCheckerInfo.class, mappedBy = "voucherCategory")
     private HibernateCheckerInfo checkerInfo;
 
-    // -----------------------------------------------------------一对多-----------------------------------------------------------
+    // endregion
+
+    // region 一对多
+
     @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateVoucherCategoryVariable.class, mappedBy = "voucherCategory")
     private Set<HibernateVoucherCategoryVariable> voucherCategoryVariables = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateVoucher.class, mappedBy = "voucherCategory")
     private Set<HibernateVoucher> vouchers = new HashSet<>();
 
-    // -----------------------------------------------------------审计-----------------------------------------------------------
+    // endregion
+
+    // region 审计
+
     @DatamarkField(handlerName = "voucherCategoryDatamarkHandler")
     @Column(
             name = "created_datamark",
@@ -61,10 +74,13 @@ public class HibernateVoucherCategory implements Bean {
     )
     private String modifiedDatamark;
 
+    // endregion
+
     public HibernateVoucherCategory() {
     }
 
-    // -----------------------------------------------------------映射用属性区-----------------------------------------------------------
+    // region 映射用属性区
+
     public HibernateStringIdKey getKey() {
         return new HibernateStringIdKey(stringId);
     }
@@ -73,7 +89,10 @@ public class HibernateVoucherCategory implements Bean {
         this.stringId = key.getStringId();
     }
 
-    // -----------------------------------------------------------常规属性区-----------------------------------------------------------
+    // endregion
+
+    // region 常规属性区
+
     public String getStringId() {
         return stringId;
     }
@@ -145,6 +164,8 @@ public class HibernateVoucherCategory implements Bean {
     public void setModifiedDatamark(String modifiedDatamark) {
         this.modifiedDatamark = modifiedDatamark;
     }
+
+    // endregion
 
     @Override
     public String toString() {

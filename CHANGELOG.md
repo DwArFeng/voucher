@@ -4,6 +4,15 @@
 
 ### 功能构建
 
+- `voucher-impl` 子模块类优化注释、文档注释格式、代码换行格式。
+  - com.dwarfeng.voucher.impl.bean.BeanMapper。
+  - com.dwarfeng.voucher.impl.bean.entity.HibernateCheckerInfo。
+  - com.dwarfeng.voucher.impl.bean.entity.HibernateCheckerSupport。
+  - com.dwarfeng.voucher.impl.bean.entity.HibernateVoucher。
+  - com.dwarfeng.voucher.impl.bean.entity.HibernateVoucherCategory。
+  - com.dwarfeng.voucher.impl.bean.entity.HibernateVoucherCategoryVariable。
+  - com.dwarfeng.voucher.impl.bean.entity.HibernateVoucherVariable。
+
 - `voucher-sdk` 子模块类优化注释、文档注释格式、代码换行格式。
   - com.dwarfeng.voucher.sdk.bean.BeanMapper。
 

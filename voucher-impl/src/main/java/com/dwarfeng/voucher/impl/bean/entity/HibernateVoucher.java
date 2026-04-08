@@ -17,16 +17,23 @@ public class HibernateVoucher implements Bean {
 
     private static final long serialVersionUID = -1549730153622909066L;
 
-    // -----------------------------------------------------------主键-----------------------------------------------------------
+    // region 主键
+
     @Id
     @Column(name = "id", nullable = false, unique = true)
     private Long longId;
 
-    // -----------------------------------------------------------外键-----------------------------------------------------------
+    // endregion
+
+    // region 外键
+
     @Column(name = "category_id", length = Constraints.LENGTH_STRING_ID)
     private String categoryLongId;
 
-    // -----------------------------------------------------------主属性字段-----------------------------------------------------------
+    // endregion
+
+    // region 主属性字段
+
     @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 
@@ -36,21 +43,30 @@ public class HibernateVoucher implements Bean {
     @Column(name = "valid", nullable = false)
     private boolean valid;
 
-    // -----------------------------------------------------------多对一-----------------------------------------------------------
+    // endregion
+
+    // region 多对一
+
     @ManyToOne(targetEntity = HibernateVoucherCategory.class)
     @JoinColumns({ //
             @JoinColumn(name = "category_id", referencedColumnName = "id", insertable = false, updatable = false), //
     })
     private HibernateVoucherCategory voucherCategory;
 
-    // -----------------------------------------------------------一对多-----------------------------------------------------------
+    // endregion
+
+    // region 一对多
+
     @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateVoucherVariable.class, mappedBy = "voucher")
     private Set<HibernateVoucherVariable> voucherVariables = new HashSet<>();
+
+    // endregion
 
     public HibernateVoucher() {
     }
 
-    // -----------------------------------------------------------映射用属性区-----------------------------------------------------------
+    // region 映射用属性区
+
     public HibernateLongIdKey getKey() {
         return Optional.ofNullable(longId).map(HibernateLongIdKey::new).orElse(null);
     }
@@ -67,7 +83,10 @@ public class HibernateVoucher implements Bean {
         this.categoryLongId = Optional.ofNullable(key).map(HibernateStringIdKey::getStringId).orElse(null);
     }
 
-    // -----------------------------------------------------------常规属性区-----------------------------------------------------------
+    // endregion
+
+    // region 常规属性区
+
     public Long getLongId() {
         return longId;
     }
@@ -119,6 +138,8 @@ public class HibernateVoucher implements Bean {
     public void setVoucherVariables(Set<HibernateVoucherVariable> voucherVariables) {
         this.voucherVariables = voucherVariables;
     }
+
+    // endregion
 
     @Override
     public String toString() {

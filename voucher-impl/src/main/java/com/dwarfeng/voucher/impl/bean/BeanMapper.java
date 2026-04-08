@@ -26,7 +26,8 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface BeanMapper {
 
-    // -----------------------------------------------------------Subgrade Key-----------------------------------------------------------
+    // region Subgrade Key
+
     HibernateLongIdKey longIdKeyToHibernate(LongIdKey longIdKey);
 
     @InheritInverseConfiguration
@@ -37,7 +38,10 @@ public interface BeanMapper {
     @InheritInverseConfiguration
     StringIdKey stringIdKeyFromHibernate(HibernateStringIdKey hibernateStringIdKey);
 
-    // -----------------------------------------------------------Voucher Key-----------------------------------------------------------
+    // endregion
+
+    // region Voucher Key
+
     HibernateVoucherCategoryVariableKey voucherCategoryVariableKeyToHibernate(
             VoucherCategoryVariableKey voucherCategoryVariableKey
     );
@@ -52,7 +56,10 @@ public interface BeanMapper {
     @InheritInverseConfiguration
     VoucherVariableKey voucherVariableKeyFromHibernate(HibernateVoucherVariableKey hibernateVoucherVariableKey);
 
-    // -----------------------------------------------------------Voucher Entity-----------------------------------------------------------
+    // endregion
+
+    // region Voucher Entity
+
     @Mapping(target = "voucherCategory", ignore = true)
     @Mapping(target = "stringId", ignore = true)
     @Mapping(target = "modifiedDatamark", ignore = true)
@@ -107,4 +114,6 @@ public interface BeanMapper {
 
     @InheritInverseConfiguration
     VoucherVariable voucherVariableFromHibernate(HibernateVoucherVariable hibernateVoucherVariable);
+
+    // endregion
 }

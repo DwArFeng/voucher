@@ -15,7 +15,8 @@ public class HibernateVoucherCategoryVariable implements Bean {
 
     private static final long serialVersionUID = -1014070152688811245L;
 
-    // -----------------------------------------------------------主键-----------------------------------------------------------
+    // region 主键
+
     @Id
     @Column(name = "voucher_category_id", length = Constraints.LENGTH_STRING_ID, nullable = false)
     private String voucherCategoryId;
@@ -24,7 +25,10 @@ public class HibernateVoucherCategoryVariable implements Bean {
     @Column(name = "variable_id", length = Constraints.LENGTH_VARIABLE_ID, nullable = false)
     private String variableId;
 
-    // -----------------------------------------------------------主属性字段-----------------------------------------------------------
+    // endregion
+
+    // region 主属性字段
+
     @Column(name = "value", columnDefinition = "TEXT")
     private String value;
 
@@ -32,17 +36,23 @@ public class HibernateVoucherCategoryVariable implements Bean {
     @Column(name = "last_updated_date")
     private Date lastUpdatedDate;
 
-    // -----------------------------------------------------------多对一-----------------------------------------------------------
+    // endregion
+
+    // region 多对一
+
     @ManyToOne(targetEntity = HibernateVoucherCategory.class)
     @JoinColumns({ //
             @JoinColumn(name = "voucher_category_id", referencedColumnName = "id", insertable = false, updatable = false), //
     })
     private HibernateVoucherCategory voucherCategory;
 
+    // endregion
+
     public HibernateVoucherCategoryVariable() {
     }
 
-    // -----------------------------------------------------------映射用属性区-----------------------------------------------------------
+    // region 映射用属性区
+
     public HibernateVoucherCategoryVariableKey getKey() {
         return new HibernateVoucherCategoryVariableKey(voucherCategoryId, variableId);
     }
@@ -57,7 +67,10 @@ public class HibernateVoucherCategoryVariable implements Bean {
         }
     }
 
-    // -----------------------------------------------------------常规属性区-----------------------------------------------------------
+    // endregion
+
+    // region 常规属性区
+
     public String getVoucherCategoryId() {
         return voucherCategoryId;
     }
@@ -97,6 +110,8 @@ public class HibernateVoucherCategoryVariable implements Bean {
     public void setVoucherCategory(HibernateVoucherCategory voucherCategory) {
         this.voucherCategory = voucherCategory;
     }
+
+    // endregion
 
     @Override
     public String toString() {
