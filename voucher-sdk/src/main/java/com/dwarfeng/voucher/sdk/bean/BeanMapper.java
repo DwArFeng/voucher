@@ -29,7 +29,8 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface BeanMapper {
 
-    // -----------------------------------------------------------Subgrade Key-----------------------------------------------------------
+    // region Subgrade Key
+
     FastJsonLongIdKey longIdKeyToFastJson(LongIdKey longIdKey);
 
     @InheritInverseConfiguration
@@ -50,7 +51,10 @@ public interface BeanMapper {
     @InheritInverseConfiguration
     StringIdKey stringIdKeyFromWebInput(WebInputStringIdKey webInputStringIdKey);
 
-    // -----------------------------------------------------------Voucher Key-----------------------------------------------------------
+    // endregion
+
+    // region Voucher Key
+
     FastJsonVoucherCategoryVariableKey voucherCategoryVariableKeyToFastJson(
             VoucherCategoryVariableKey voucherCategoryVariableKey
     );
@@ -65,7 +69,10 @@ public interface BeanMapper {
     @InheritInverseConfiguration
     VoucherVariableKey voucherVariableKeyFromFastJson(FastJsonVoucherVariableKey fastJsonVoucherVariableKey);
 
-    // -----------------------------------------------------------Voucher Entity-----------------------------------------------------------
+    // endregion
+
+    // region Voucher Entity
+
     FastJsonCheckerInfo checkerInfoToFastJson(CheckerInfo checkerInfo);
 
     @InheritInverseConfiguration
@@ -113,7 +120,10 @@ public interface BeanMapper {
     @InheritInverseConfiguration
     VoucherCategory voucherCategoryFromWebInput(WebInputVoucherCategory webInputVoucherCategory);
 
-    // -----------------------------------------------------------Voucher DTO-----------------------------------------------------------
+    // endregion
+
+    // region Voucher DTO
+
     FastJsonVoucherInspectResult voucherInspectResultToFastJson(VoucherInspectResult voucherInspectResult);
 
     @InheritInverseConfiguration
@@ -174,4 +184,6 @@ public interface BeanMapper {
 
     @InheritInverseConfiguration
     VoucherRemoveInfo voucherRemoveInfoFromWebInput(WebInputVoucherRemoveInfo webInputVoucherRemoveInfo);
+
+    // endregion
 }
