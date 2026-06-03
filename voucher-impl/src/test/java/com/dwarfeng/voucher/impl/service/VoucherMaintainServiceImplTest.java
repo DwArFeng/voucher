@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
@@ -68,9 +69,14 @@ public class VoucherMaintainServiceImplTest {
             }
         } finally {
             for (Voucher voucher : vouchers) {
+                if (Objects.isNull(voucher.getKey())) {
+                    continue;
+                }
                 voucherMaintainService.deleteIfExists(voucher.getKey());
             }
-            voucherCategoryMaintainService.deleteIfExists(voucherCategory.getKey());
+            if (Objects.nonNull(voucherCategory.getKey())) {
+                voucherCategoryMaintainService.deleteIfExists(voucherCategory.getKey());
+            }
         }
     }
 
@@ -104,9 +110,14 @@ public class VoucherMaintainServiceImplTest {
             ));
         } finally {
             for (Voucher voucher : vouchers) {
+                if (Objects.isNull(voucher.getKey())) {
+                    continue;
+                }
                 voucherMaintainService.deleteIfExists(voucher.getKey());
             }
-            voucherCategoryMaintainService.deleteIfExists(voucherCategory.getKey());
+            if (Objects.nonNull(voucherCategory.getKey())) {
+                voucherCategoryMaintainService.deleteIfExists(voucherCategory.getKey());
+            }
         }
     }
 }

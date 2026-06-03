@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
@@ -72,9 +73,14 @@ public class VoucherCategoryVariableMaintainServiceImplTest {
             }
         } finally {
             for (VoucherCategoryVariable voucherCategoryVariable : voucherCategoryVariables) {
+                if (Objects.isNull(voucherCategoryVariable.getKey())) {
+                    continue;
+                }
                 voucherCategoryVariableMaintainService.deleteIfExists(voucherCategoryVariable.getKey());
             }
-            voucherCategoryMaintainService.deleteIfExists(voucherCategory.getKey());
+            if (Objects.nonNull(voucherCategory.getKey())) {
+                voucherCategoryMaintainService.deleteIfExists(voucherCategory.getKey());
+            }
         }
     }
 
@@ -109,9 +115,14 @@ public class VoucherCategoryVariableMaintainServiceImplTest {
             ));
         } finally {
             for (VoucherCategoryVariable voucherCategoryVariable : voucherCategoryVariables) {
+                if (Objects.isNull(voucherCategoryVariable.getKey())) {
+                    continue;
+                }
                 voucherCategoryVariableMaintainService.deleteIfExists(voucherCategoryVariable.getKey());
             }
-            voucherCategoryMaintainService.deleteIfExists(voucherCategory.getKey());
+            if (Objects.nonNull(voucherCategory.getKey())) {
+                voucherCategoryMaintainService.deleteIfExists(voucherCategory.getKey());
+            }
         }
     }
 }

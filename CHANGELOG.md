@@ -4,6 +4,14 @@
 
 ### 功能构建
 
+- 优化部分单元测试代码，以规避潜在的 bug。
+  - com.dwarfeng.voucher.impl.service.CheckerInfoMaintainServiceImplTest。
+  - com.dwarfeng.voucher.impl.service.CheckerSupportMaintainServiceImplTest。
+  - com.dwarfeng.voucher.impl.service.VoucherCategoryMaintainServiceImplTest。
+  - com.dwarfeng.voucher.impl.service.VoucherCategoryVariableMaintainServiceImplTest。
+  - com.dwarfeng.voucher.impl.service.VoucherMaintainServiceImplTest。
+  - com.dwarfeng.voucher.impl.service.VoucherVariableMaintainServiceImplTest。
+
 - 优化部分说明文件中的格式。
   - libext/README.md。
   - optext/README.md。

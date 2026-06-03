@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Objects;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -56,8 +58,12 @@ public class CheckerInfoMaintainServiceImplTest {
             testCheckerInfo = checkerInfoMaintainService.get(checkerInfo.getKey());
             assertEquals(BeanUtils.describe(checkerInfo), BeanUtils.describe(testCheckerInfo));
         } finally {
-            checkerInfoMaintainService.deleteIfExists(checkerInfo.getKey());
-            voucherCategoryMaintainService.deleteIfExists(voucherCategory.getKey());
+            if (Objects.nonNull(checkerInfo.getKey())) {
+                checkerInfoMaintainService.deleteIfExists(checkerInfo.getKey());
+            }
+            if (Objects.nonNull(voucherCategory.getKey())) {
+                voucherCategoryMaintainService.deleteIfExists(voucherCategory.getKey());
+            }
         }
     }
 
@@ -73,8 +79,12 @@ public class CheckerInfoMaintainServiceImplTest {
 
             assertFalse(checkerInfoMaintainService.exists(checkerInfo.getKey()));
         } finally {
-            checkerInfoMaintainService.deleteIfExists(checkerInfo.getKey());
-            voucherCategoryMaintainService.deleteIfExists(voucherCategory.getKey());
+            if (Objects.nonNull(checkerInfo.getKey())) {
+                checkerInfoMaintainService.deleteIfExists(checkerInfo.getKey());
+            }
+            if (Objects.nonNull(voucherCategory.getKey())) {
+                voucherCategoryMaintainService.deleteIfExists(voucherCategory.getKey());
+            }
         }
     }
 }
