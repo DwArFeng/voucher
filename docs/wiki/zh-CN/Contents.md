@@ -17,3 +17,7 @@
 ### 安装
 
 - [Compile By Source](./CompileBySource.md) - 从源码编译，说明如何通过其它 Maven 仓库或依赖源码完成构建，以及打包产物的位置。
+
+### 配置
+
+- [Conf Directory](./ConfDirectory.md) - 配置目录说明，详细说明如何配置本项目，即 `conf/` 目录下的内容。

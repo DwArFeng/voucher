@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- Wiki 编写。
+  - docs/wiki/zh-CN/ConfDirectory.md。
+
 - 优化部分单元测试代码，以规避潜在的 bug。
   - com.dwarfeng.voucher.impl.service.CheckerInfoMaintainServiceImplTest。
   - com.dwarfeng.voucher.impl.service.CheckerSupportMaintainServiceImplTest。
