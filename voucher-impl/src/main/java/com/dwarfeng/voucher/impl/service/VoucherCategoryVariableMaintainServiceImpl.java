@@ -1,13 +1,13 @@
 package com.dwarfeng.voucher.impl.service;
 
-import com.dwarfeng.subgrade.impl.service.DaoOnlyEntireLookupService;
-import com.dwarfeng.subgrade.impl.service.DaoOnlyPresetLookupService;
-import com.dwarfeng.subgrade.impl.service.GeneralBatchCrudService;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.BehaviorAnalyse;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.SkipRecord;
 import com.dwarfeng.subgrade.stack.bean.dto.PagedData;
 import com.dwarfeng.subgrade.stack.bean.dto.PagingInfo;
 import com.dwarfeng.subgrade.stack.exception.ServiceException;
+import com.dwarfeng.subgrade.stack.service.BatchCrudService;
+import com.dwarfeng.subgrade.stack.service.EntireLookupService;
+import com.dwarfeng.subgrade.stack.service.PresetLookupService;
 import com.dwarfeng.voucher.stack.bean.entity.VoucherCategoryVariable;
 import com.dwarfeng.voucher.stack.bean.key.VoucherCategoryVariableKey;
 import com.dwarfeng.voucher.stack.service.VoucherCategoryVariableMaintainService;
@@ -19,14 +19,14 @@ import java.util.List;
 @Component
 public class VoucherCategoryVariableMaintainServiceImpl implements VoucherCategoryVariableMaintainService {
 
-    private final GeneralBatchCrudService<VoucherCategoryVariableKey, VoucherCategoryVariable> crudService;
-    private final DaoOnlyEntireLookupService<VoucherCategoryVariable> entireLookupService;
-    private final DaoOnlyPresetLookupService<VoucherCategoryVariable> presetLookupService;
+    private final BatchCrudService<VoucherCategoryVariableKey, VoucherCategoryVariable> crudService;
+    private final EntireLookupService<VoucherCategoryVariable> entireLookupService;
+    private final PresetLookupService<VoucherCategoryVariable> presetLookupService;
 
     public VoucherCategoryVariableMaintainServiceImpl(
-            GeneralBatchCrudService<VoucherCategoryVariableKey, VoucherCategoryVariable> crudService,
-            DaoOnlyEntireLookupService<VoucherCategoryVariable> entireLookupService,
-            DaoOnlyPresetLookupService<VoucherCategoryVariable> presetLookupService
+            BatchCrudService<VoucherCategoryVariableKey, VoucherCategoryVariable> crudService,
+            EntireLookupService<VoucherCategoryVariable> entireLookupService,
+            PresetLookupService<VoucherCategoryVariable> presetLookupService
     ) {
         this.crudService = crudService;
         this.entireLookupService = entireLookupService;

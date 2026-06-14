@@ -1,15 +1,13 @@
 package com.dwarfeng.voucher.impl.dao;
 
-import com.dwarfeng.subgrade.impl.dao.HibernateBatchBaseDao;
-import com.dwarfeng.subgrade.impl.dao.HibernateEntireLookupDao;
-import com.dwarfeng.subgrade.impl.dao.HibernatePresetLookupDao;
-import com.dwarfeng.subgrade.sdk.bean.key.HibernateStringIdKey;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.BehaviorAnalyse;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.SkipRecord;
 import com.dwarfeng.subgrade.stack.bean.dto.PagingInfo;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
+import com.dwarfeng.subgrade.stack.dao.BatchBaseDao;
+import com.dwarfeng.subgrade.stack.dao.EntireLookupDao;
+import com.dwarfeng.subgrade.stack.dao.PresetLookupDao;
 import com.dwarfeng.subgrade.stack.exception.DaoException;
-import com.dwarfeng.voucher.impl.bean.entity.HibernateVoucherCategory;
 import com.dwarfeng.voucher.stack.bean.entity.VoucherCategory;
 import com.dwarfeng.voucher.stack.dao.VoucherCategoryDao;
 import org.springframework.stereotype.Repository;
@@ -20,16 +18,14 @@ import java.util.List;
 @Repository
 public class VoucherCategoryDaoImpl implements VoucherCategoryDao {
 
-    private final HibernateBatchBaseDao<StringIdKey, HibernateStringIdKey, VoucherCategory, HibernateVoucherCategory>
-            batchBaseDao;
-    private final HibernateEntireLookupDao<VoucherCategory, HibernateVoucherCategory> entireLookupDao;
-    private final HibernatePresetLookupDao<VoucherCategory, HibernateVoucherCategory> presetLookupDao;
+    private final BatchBaseDao<StringIdKey, VoucherCategory> batchBaseDao;
+    private final EntireLookupDao<VoucherCategory> entireLookupDao;
+    private final PresetLookupDao<VoucherCategory> presetLookupDao;
 
     public VoucherCategoryDaoImpl(
-            HibernateBatchBaseDao<StringIdKey, HibernateStringIdKey, VoucherCategory, HibernateVoucherCategory>
-                    batchBaseDao,
-            HibernateEntireLookupDao<VoucherCategory, HibernateVoucherCategory> entireLookupDao,
-            HibernatePresetLookupDao<VoucherCategory, HibernateVoucherCategory> presetLookupDao
+            BatchBaseDao<StringIdKey, VoucherCategory> batchBaseDao,
+            EntireLookupDao<VoucherCategory> entireLookupDao,
+            PresetLookupDao<VoucherCategory> presetLookupDao
     ) {
         this.batchBaseDao = batchBaseDao;
         this.entireLookupDao = entireLookupDao;

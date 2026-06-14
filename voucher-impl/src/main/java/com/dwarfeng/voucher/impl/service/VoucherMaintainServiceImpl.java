@@ -1,14 +1,14 @@
 package com.dwarfeng.voucher.impl.service;
 
-import com.dwarfeng.subgrade.impl.service.CustomBatchCrudService;
-import com.dwarfeng.subgrade.impl.service.DaoOnlyEntireLookupService;
-import com.dwarfeng.subgrade.impl.service.DaoOnlyPresetLookupService;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.BehaviorAnalyse;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.SkipRecord;
 import com.dwarfeng.subgrade.stack.bean.dto.PagedData;
 import com.dwarfeng.subgrade.stack.bean.dto.PagingInfo;
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import com.dwarfeng.subgrade.stack.exception.ServiceException;
+import com.dwarfeng.subgrade.stack.service.BatchCrudService;
+import com.dwarfeng.subgrade.stack.service.EntireLookupService;
+import com.dwarfeng.subgrade.stack.service.PresetLookupService;
 import com.dwarfeng.voucher.stack.bean.entity.Voucher;
 import com.dwarfeng.voucher.stack.service.VoucherMaintainService;
 import org.springframework.stereotype.Component;
@@ -19,14 +19,14 @@ import java.util.List;
 @Component
 public class VoucherMaintainServiceImpl implements VoucherMaintainService {
 
-    private final CustomBatchCrudService<LongIdKey, Voucher> crudService;
-    private final DaoOnlyEntireLookupService<Voucher> entireLookupService;
-    private final DaoOnlyPresetLookupService<Voucher> presetLookupService;
+    private final BatchCrudService<LongIdKey, Voucher> crudService;
+    private final EntireLookupService<Voucher> entireLookupService;
+    private final PresetLookupService<Voucher> presetLookupService;
 
     public VoucherMaintainServiceImpl(
-            CustomBatchCrudService<LongIdKey, Voucher> crudService,
-            DaoOnlyEntireLookupService<Voucher> entireLookupService,
-            DaoOnlyPresetLookupService<Voucher> presetLookupService
+            BatchCrudService<LongIdKey, Voucher> crudService,
+            EntireLookupService<Voucher> entireLookupService,
+            PresetLookupService<Voucher> presetLookupService
     ) {
         this.crudService = crudService;
         this.entireLookupService = entireLookupService;

@@ -1,14 +1,14 @@
 package com.dwarfeng.voucher.impl.service;
 
-import com.dwarfeng.subgrade.impl.service.DaoOnlyEntireLookupService;
-import com.dwarfeng.subgrade.impl.service.DaoOnlyPresetLookupService;
-import com.dwarfeng.subgrade.impl.service.GeneralBatchCrudService;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.BehaviorAnalyse;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.SkipRecord;
 import com.dwarfeng.subgrade.stack.bean.dto.PagedData;
 import com.dwarfeng.subgrade.stack.bean.dto.PagingInfo;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
 import com.dwarfeng.subgrade.stack.exception.ServiceException;
+import com.dwarfeng.subgrade.stack.service.BatchCrudService;
+import com.dwarfeng.subgrade.stack.service.EntireLookupService;
+import com.dwarfeng.subgrade.stack.service.PresetLookupService;
 import com.dwarfeng.voucher.stack.bean.entity.CheckerInfo;
 import com.dwarfeng.voucher.stack.service.CheckerInfoMaintainService;
 import org.springframework.stereotype.Service;
@@ -19,14 +19,14 @@ import java.util.List;
 @Service
 public class CheckerInfoMaintainServiceImpl implements CheckerInfoMaintainService {
 
-    private final GeneralBatchCrudService<StringIdKey, CheckerInfo> crudService;
-    private final DaoOnlyEntireLookupService<CheckerInfo> entireLookupService;
-    private final DaoOnlyPresetLookupService<CheckerInfo> presetLookupService;
+    private final BatchCrudService<StringIdKey, CheckerInfo> crudService;
+    private final EntireLookupService<CheckerInfo> entireLookupService;
+    private final PresetLookupService<CheckerInfo> presetLookupService;
 
     public CheckerInfoMaintainServiceImpl(
-            GeneralBatchCrudService<StringIdKey, CheckerInfo> crudService,
-            DaoOnlyEntireLookupService<CheckerInfo> entireLookupService,
-            DaoOnlyPresetLookupService<CheckerInfo> presetLookupService
+            BatchCrudService<StringIdKey, CheckerInfo> crudService,
+            EntireLookupService<CheckerInfo> entireLookupService,
+            PresetLookupService<CheckerInfo> presetLookupService
     ) {
         this.crudService = crudService;
         this.entireLookupService = entireLookupService;

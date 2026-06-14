@@ -1,15 +1,13 @@
 package com.dwarfeng.voucher.impl.dao;
 
-import com.dwarfeng.subgrade.impl.dao.HibernateBatchBaseDao;
-import com.dwarfeng.subgrade.impl.dao.HibernateEntireLookupDao;
-import com.dwarfeng.subgrade.impl.dao.HibernatePresetLookupDao;
-import com.dwarfeng.subgrade.sdk.bean.key.HibernateLongIdKey;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.BehaviorAnalyse;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.SkipRecord;
 import com.dwarfeng.subgrade.stack.bean.dto.PagingInfo;
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
+import com.dwarfeng.subgrade.stack.dao.BatchBaseDao;
+import com.dwarfeng.subgrade.stack.dao.EntireLookupDao;
+import com.dwarfeng.subgrade.stack.dao.PresetLookupDao;
 import com.dwarfeng.subgrade.stack.exception.DaoException;
-import com.dwarfeng.voucher.impl.bean.entity.HibernateVoucher;
 import com.dwarfeng.voucher.stack.bean.entity.Voucher;
 import com.dwarfeng.voucher.stack.dao.VoucherDao;
 import org.springframework.stereotype.Repository;
@@ -20,14 +18,14 @@ import java.util.List;
 @Repository
 public class VoucherDaoImpl implements VoucherDao {
 
-    private final HibernateBatchBaseDao<LongIdKey, HibernateLongIdKey, Voucher, HibernateVoucher> batchBaseDao;
-    private final HibernateEntireLookupDao<Voucher, HibernateVoucher> entireLookupDao;
-    private final HibernatePresetLookupDao<Voucher, HibernateVoucher> presetLookupDao;
+    private final BatchBaseDao<LongIdKey, Voucher> batchBaseDao;
+    private final EntireLookupDao<Voucher> entireLookupDao;
+    private final PresetLookupDao<Voucher> presetLookupDao;
 
     public VoucherDaoImpl(
-            HibernateBatchBaseDao<LongIdKey, HibernateLongIdKey, Voucher, HibernateVoucher> batchBaseDao,
-            HibernateEntireLookupDao<Voucher, HibernateVoucher> entireLookupDao,
-            HibernatePresetLookupDao<Voucher, HibernateVoucher> presetLookupDao
+            BatchBaseDao<LongIdKey, Voucher> batchBaseDao,
+            EntireLookupDao<Voucher> entireLookupDao,
+            PresetLookupDao<Voucher> presetLookupDao
     ) {
         this.batchBaseDao = batchBaseDao;
         this.entireLookupDao = entireLookupDao;

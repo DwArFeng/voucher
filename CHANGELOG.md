@@ -4,6 +4,26 @@
 
 ### 功能构建
 
+- 部分代理类实现中的字段类型提升为对应的接口，与具体实现解耦。
+  - com.dwarfeng.voucher.impl.cache.CheckerInfoCacheImpl。
+  - com.dwarfeng.voucher.impl.cache.CheckerSupportCacheImpl。
+  - com.dwarfeng.voucher.impl.cache.VoucherCacheImpl。
+  - com.dwarfeng.voucher.impl.cache.VoucherCategoryCacheImpl。
+  - com.dwarfeng.voucher.impl.cache.VoucherCategoryVariableCacheImpl。
+  - com.dwarfeng.voucher.impl.cache.VoucherVariableCacheImpl。
+  - com.dwarfeng.voucher.impl.dao.CheckerInfoDaoImpl。
+  - com.dwarfeng.voucher.impl.dao.CheckerSupportDaoImpl。
+  - com.dwarfeng.voucher.impl.dao.VoucherCategoryDaoImpl。
+  - com.dwarfeng.voucher.impl.dao.VoucherCategoryVariableDaoImpl。
+  - com.dwarfeng.voucher.impl.dao.VoucherDaoImpl。
+  - com.dwarfeng.voucher.impl.dao.VoucherVariableDaoImpl。
+  - com.dwarfeng.voucher.impl.service.CheckerInfoMaintainServiceImpl。
+  - com.dwarfeng.voucher.impl.service.CheckerSupportMaintainServiceImpl。
+  - com.dwarfeng.voucher.impl.service.VoucherCategoryMaintainServiceImpl。
+  - com.dwarfeng.voucher.impl.service.VoucherCategoryVariableMaintainServiceImpl。
+  - com.dwarfeng.voucher.impl.service.VoucherMaintainServiceImpl。
+  - com.dwarfeng.voucher.impl.service.VoucherVariableMaintainServiceImpl。
+
 - 优化项目的异常处理机制。
   - `voucher-sdk` 子模块新增 `ServiceExceptionHelper` 工具类，统一维护项目自身的异常映射关系。
   - `voucher-impl` 子模块 `ServiceExceptionMapperConfiguration` 配置类的异常映射处理逻辑优化。
