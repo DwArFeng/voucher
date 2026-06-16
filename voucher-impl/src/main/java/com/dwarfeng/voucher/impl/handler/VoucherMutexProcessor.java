@@ -17,7 +17,7 @@ public class VoucherMutexProcessor {
 
     private final CuratorFramework curatorFramework;
 
-    @Value("${curator.mutex_prefix.voucher_lock}")
+    @Value("${com.dwarfeng.voucher.curator.mutex_prefix.voucher_lock}")
     private String voucherMutexPrefix;
 
     public VoucherMutexProcessor(CuratorFramework curatorFramework) {

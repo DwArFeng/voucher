@@ -34,7 +34,7 @@ public class DaoConfiguration {
     private final VoucherCategoryVariablePresetCriteriaMaker voucherCategoryVariablePresetCriteriaMaker;
     private final VoucherVariablePresetCriteriaMaker voucherVariablePresetCriteriaMaker;
 
-    @Value("${hibernate.jdbc.batch_size}")
+    @Value("${com.dwarfeng.voucher.hibernate.jdbc.batch_size}")
     private int batchSize;
 
     public DaoConfiguration(

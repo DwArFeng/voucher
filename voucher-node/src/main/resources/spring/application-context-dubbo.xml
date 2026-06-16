@@ -16,12 +16,19 @@
     </dubbo:application>
 
     <!-- Zookeeper 注册中心。 -->
-    <dubbo:registry address="${dubbo.registry.zookeeper.address}" timeout="${dubbo.registry.zookeeper.timeout}"/>
+    <dubbo:registry
+            address="${com.dwarfeng.voucher.dubbo.registry.zookeeper.address}"
+            timeout="${com.dwarfeng.voucher.dubbo.registry.zookeeper.timeout}"
+    />
 
     <!-- Dubbo 协议。 -->
     <dubbo:protocol
-            name="dubbo" port="${dubbo.protocol.dubbo.port}" host="${dubbo.protocol.dubbo.host}"
-            dispatcher="message" threadpool="fixed" threads="100"
+            name="dubbo"
+            port="${com.dwarfeng.voucher.dubbo.protocol.dubbo.port}"
+            host="${com.dwarfeng.voucher.dubbo.protocol.dubbo.host}"
+            dispatcher="message"
+            threadpool="fixed"
+            threads="100"
     />
 
     <!-- endregion -->
@@ -33,42 +40,42 @@
     <dubbo:service
             interface="com.dwarfeng.voucher.stack.service.CheckerInfoMaintainService"
             ref="checkerInfoMaintainServiceImpl"
-            group="${dubbo.provider.group}"
+            group="${com.dwarfeng.voucher.dubbo.provider.group}"
     />
     <dubbo:service
             interface="com.dwarfeng.voucher.stack.service.CheckerSupportMaintainService"
             ref="checkerSupportMaintainServiceImpl"
-            group="${dubbo.provider.group}"
+            group="${com.dwarfeng.voucher.dubbo.provider.group}"
     />
     <dubbo:service
             interface="com.dwarfeng.voucher.stack.service.VoucherCategoryMaintainService"
             ref="voucherCategoryMaintainServiceImpl"
-            group="${dubbo.provider.group}"
+            group="${com.dwarfeng.voucher.dubbo.provider.group}"
     />
     <dubbo:service
             interface="com.dwarfeng.voucher.stack.service.VoucherCategoryVariableMaintainService"
             ref="voucherCategoryVariableMaintainServiceImpl"
-            group="${dubbo.provider.group}"
+            group="${com.dwarfeng.voucher.dubbo.provider.group}"
     />
     <dubbo:service
             interface="com.dwarfeng.voucher.stack.service.VoucherCategoryVariableOperateService"
             ref="voucherCategoryVariableOperateServiceImpl"
-            group="${dubbo.provider.group}"
+            group="${com.dwarfeng.voucher.dubbo.provider.group}"
     />
     <dubbo:service
             interface="com.dwarfeng.voucher.stack.service.VoucherMaintainService"
             ref="voucherMaintainServiceImpl"
-            group="${dubbo.provider.group}"
+            group="${com.dwarfeng.voucher.dubbo.provider.group}"
     />
     <dubbo:service
             interface="com.dwarfeng.voucher.stack.service.VoucherService"
             ref="voucherServiceImpl"
-            group="${dubbo.provider.group}"
+            group="${com.dwarfeng.voucher.dubbo.provider.group}"
     />
     <dubbo:service
             interface="com.dwarfeng.voucher.stack.service.VoucherVariableMaintainService"
             ref="voucherVariableMaintainServiceImpl"
-            group="${dubbo.provider.group}"
+            group="${com.dwarfeng.voucher.dubbo.provider.group}"
     />
 
     <!-- endregion -->
@@ -83,7 +90,7 @@
             id="snowflakeGenerateService"
             interface="com.dwarfeng.sfds.stack.service.GenerateService"
             check="false"
-            group="${dubbo.consumer.snowflake.group}"
+            group="${com.dwarfeng.voucher.dubbo.consumer.snowflake.group}"
     />
 
     <!-- endregion -->

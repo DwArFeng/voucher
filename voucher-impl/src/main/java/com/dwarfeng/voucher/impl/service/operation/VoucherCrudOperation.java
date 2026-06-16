@@ -27,7 +27,7 @@ public class VoucherCrudOperation implements BatchCrudOperation<LongIdKey, Vouch
     private final VoucherVariableDao voucherVariableDao;
     private final VoucherVariableCache voucherVariableCache;
 
-    @Value("${cache.timeout.entity.voucher}")
+    @Value("${com.dwarfeng.voucher.cache.timeout.entity.voucher}")
     private long voucherTimeout;
 
     public VoucherCrudOperation(

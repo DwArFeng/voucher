@@ -41,13 +41,13 @@ public class ServiceConfiguration {
     private final VoucherVariableDao voucherVariableDao;
     private final VoucherVariableCache voucherVariableCache;
 
-    @Value("${cache.timeout.entity.checker_info}")
+    @Value("${com.dwarfeng.voucher.cache.timeout.entity.checker_info}")
     private long checkerInfoTimeout;
-    @Value("${cache.timeout.entity.checker_support}")
+    @Value("${com.dwarfeng.voucher.cache.timeout.entity.checker_support}")
     private long checkerSupportTimeout;
-    @Value("${cache.timeout.entity.voucher_category_variable}")
+    @Value("${com.dwarfeng.voucher.cache.timeout.entity.voucher_category_variable}")
     private long voucherCategoryVariableTimeout;
-    @Value("${cache.timeout.entity.voucher_variable}")
+    @Value("${com.dwarfeng.voucher.cache.timeout.entity.voucher_variable}")
     private long voucherVariableTimeout;
 
     public ServiceConfiguration(

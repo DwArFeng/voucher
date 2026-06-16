@@ -33,7 +33,7 @@ public class NativeKafkaPusher extends AbstractPusher {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
-    @Value("${pusher.kafka.native.topic.check_reset}")
+    @Value("${com.dwarfeng.voucher.pusher.kafka.native.topic.check_reset}")
     private String checkResetTopic;
 
     public NativeKafkaPusher(
@@ -63,19 +63,19 @@ public class NativeKafkaPusher extends AbstractPusher {
 
         private static final Logger LOGGER = LoggerFactory.getLogger(KafkaPusherConfiguration.class);
 
-        @Value("${pusher.kafka.native.bootstrap_servers}")
+        @Value("${com.dwarfeng.voucher.pusher.kafka.native.bootstrap_servers}")
         private String producerBootstrapServers;
-        @Value("${pusher.kafka.native.retries}")
+        @Value("${com.dwarfeng.voucher.pusher.kafka.native.retries}")
         private int retries;
-        @Value("${pusher.kafka.native.linger}")
+        @Value("${com.dwarfeng.voucher.pusher.kafka.native.linger}")
         private long linger;
-        @Value("${pusher.kafka.native.buffer_memory}")
+        @Value("${com.dwarfeng.voucher.pusher.kafka.native.buffer_memory}")
         private long bufferMemory;
-        @Value("${pusher.kafka.native.batch_size}")
+        @Value("${com.dwarfeng.voucher.pusher.kafka.native.batch_size}")
         private int batchSize;
-        @Value("${pusher.kafka.native.acks}")
+        @Value("${com.dwarfeng.voucher.pusher.kafka.native.acks}")
         private String acks;
-        @Value("${pusher.kafka.native.transaction_prefix}")
+        @Value("${com.dwarfeng.voucher.pusher.kafka.native.transaction_prefix}")
         private String transactionPrefix;
 
         @Bean("nativeKafkaPusher.producerProperties")

@@ -28,7 +28,7 @@ public class CleanupHandlerImpl implements CleanupHandler {
 
     public CleanupHandlerImpl(
             CuratorFramework curatorFramework,
-            @Value("${curator.latch_path.cleanup.leader_latch}") String leaderLatchPath,
+            @Value("${com.dwarfeng.voucher.curator.latch_path.cleanup.leader_latch}") String leaderLatchPath,
             CleanupWorker worker,
             CleanupProcessor cleanupProcessor
     ) {
@@ -101,7 +101,7 @@ public class CleanupHandlerImpl implements CleanupHandler {
 
         private final ThreadPoolTaskScheduler scheduler;
 
-        @Value("${cleanup.cron}")
+        @Value("${com.dwarfeng.voucher.cleanup.cron}")
         private String cron;
 
         private Future<?> cleanupFuture;

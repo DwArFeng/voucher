@@ -23,17 +23,17 @@ public class CacheConfiguration {
 
     private final RedisTemplate<String, ?> template;
 
-    @Value("${cache.prefix.entity.checker_info}")
+    @Value("${com.dwarfeng.voucher.cache.prefix.entity.checker_info}")
     private String checkerInfoPrefix;
-    @Value("${cache.prefix.entity.checker_support}")
+    @Value("${com.dwarfeng.voucher.cache.prefix.entity.checker_support}")
     private String checkerSupportPrefix;
-    @Value("${cache.prefix.entity.voucher}")
+    @Value("${com.dwarfeng.voucher.cache.prefix.entity.voucher}")
     private String voucherPrefix;
-    @Value("${cache.prefix.entity.voucher_category}")
+    @Value("${com.dwarfeng.voucher.cache.prefix.entity.voucher_category}")
     private String voucherCategoryPrefix;
-    @Value("${cache.prefix.entity.voucher_category_variable}")
+    @Value("${com.dwarfeng.voucher.cache.prefix.entity.voucher_category_variable}")
     private String voucherCategoryVariablePrefix;
-    @Value("${cache.prefix.entity.voucher_variable}")
+    @Value("${com.dwarfeng.voucher.cache.prefix.entity.voucher_variable}")
     private String voucherVariablePrefix;
 
     public CacheConfiguration(RedisTemplate<String, ?> template) {

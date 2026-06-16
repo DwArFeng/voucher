@@ -40,7 +40,7 @@ public class VoucherCategoryCrudOperation implements BatchCrudOperation<StringId
     private final VoucherCrudOperation voucherCrudOperation;
     private final VoucherDao voucherDao;
 
-    @Value("${cache.timeout.entity.voucher_category}")
+    @Value("${com.dwarfeng.voucher.cache.timeout.entity.voucher_category}")
     private long voucherCategoryTimeout;
 
     public VoucherCategoryCrudOperation(
