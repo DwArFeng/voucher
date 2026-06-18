@@ -73,31 +73,31 @@ buildNumber.properties
 #################
 /voucher-sdk/logs/
 /voucher-impl/logs/
-/voucher-node/logs/
+/voucher-node/voucher-node-all-he/logs/
 
 #################
 ## Configuration Files
 #################
 /voucher-impl/conf/
 /voucher-sdk/conf/
-/voucher-node/conf/
+/voucher-node/voucher-node-all-he/conf/
 
 #################
 ## Libext Files
 #################
-/voucher-node/libext/
+/voucher-node/voucher-node-all-he/libext/
 
 #################
 ## Opt Files
 #################
-/voucher-node/opt/
+/voucher-node/voucher-node-all-he/opt/
 
 #################
 ## Optext Files
 #################
-/voucher-node/optext/
+/voucher-node/voucher-node-all-he/optext/
 
 #################
 ## Confext Files
 #################
-/voucher-node/confext/
+/voucher-node/voucher-node-all-he/confext/

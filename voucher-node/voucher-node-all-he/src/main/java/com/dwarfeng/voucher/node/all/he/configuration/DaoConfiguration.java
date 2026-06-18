@@ -1,4 +1,4 @@
-package com.dwarfeng.voucher.node.configuration;
+package com.dwarfeng.voucher.node.all.he.configuration;
 
 import com.dwarfeng.subgrade.impl.bean.MapStructBeanTransformer;
 import com.dwarfeng.subgrade.impl.dao.HibernateBatchBaseDao;

@@ -1,4 +1,4 @@
-package com.dwarfeng.voucher.node.configuration;
+package com.dwarfeng.voucher.node.all.he.configuration;
 
 import com.alibaba.fastjson.parser.ParserConfig;
 import com.dwarfeng.voucher.sdk.bean.entity.*;

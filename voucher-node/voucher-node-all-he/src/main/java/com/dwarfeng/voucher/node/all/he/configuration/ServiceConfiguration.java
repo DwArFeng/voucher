@@ -1,4 +1,4 @@
-package com.dwarfeng.voucher.node.configuration;
+package com.dwarfeng.voucher.node.all.he.configuration;
 
 import com.dwarfeng.subgrade.impl.generation.ExceptionKeyGenerator;
 import com.dwarfeng.subgrade.impl.service.CustomBatchCrudService;

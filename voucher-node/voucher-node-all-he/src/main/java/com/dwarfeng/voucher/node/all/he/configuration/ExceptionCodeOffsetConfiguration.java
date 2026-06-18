@@ -1,4 +1,4 @@
-package com.dwarfeng.voucher.node.configuration;
+package com.dwarfeng.voucher.node.all.he.configuration;
 
 import com.dwarfeng.voucher.sdk.util.ServiceExceptionCodes;
 import org.springframework.beans.factory.annotation.Value;

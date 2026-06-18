@@ -1,4 +1,4 @@
-package com.dwarfeng.voucher.node.configuration;
+package com.dwarfeng.voucher.node.all.he.configuration;
 
 import com.dwarfeng.subgrade.impl.exception.MapServiceExceptionMapper;
 import com.dwarfeng.subgrade.sdk.exception.ServiceExceptionHelper;
