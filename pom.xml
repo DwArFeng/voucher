@@ -10,7 +10,7 @@
 
     <groupId>com.dwarfeng</groupId>
     <artifactId>voucher</artifactId>
-    <version>2.0.0.a-SNAPSHOT</version>
+    <version>2.0.0.a</version>
 
     <packaging>pom</packaging>
 
@@ -512,22 +512,22 @@
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>voucher-stack</artifactId>
-                <version>2.0.0.a-SNAPSHOT</version>
+                <version>2.0.0.a</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>voucher-sdk</artifactId>
-                <version>2.0.0.a-SNAPSHOT</version>
+                <version>2.0.0.a</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>voucher-impl</artifactId>
-                <version>2.0.0.a-SNAPSHOT</version>
+                <version>2.0.0.a</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>voucher-node-all-he</artifactId>
-                <version>2.0.0.a-SNAPSHOT</version>
+                <version>2.0.0.a</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
