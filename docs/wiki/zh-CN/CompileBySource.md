@@ -9,6 +9,8 @@
 您可以在 `settings.xml` 中添加如下配置，以使用其它仓库，通常 `settings.xml` 在 `$HOME/.m2/` 目录下。
 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
 <settings
         xmlns="http://maven.apache.org/SETTINGS/1.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -52,11 +54,11 @@
 使用的仓库需要保证有如下依赖，否则编译过程会因为找不到依赖而失败：
 
 - com.dwarfeng:dutil
-- com.dwarfeng:snowflake-distributed-service
 - com.dwarfeng:subgrade
-- com.dwarfeng:spring-terminator
 - com.dwarfeng:spring-telqos
+- com.dwarfeng:spring-terminator
 - com.dwarfeng:dwarfeng-datamark
+- com.dwarfeng:snowflake-distributed-service
 
 ### 下载依赖源码
 
@@ -70,25 +72,11 @@
   gitee: [https://gitee.com/dwarfeng/dutil](https://gitee.com/dwarfeng/dutil)
 
 
-- com.dwarfeng:snowflake-distributed-service
-
-  github: [https://github.com/DwArFeng/snowflake-distributed-service](https://github.com/DwArFeng/snowflake-distributed-service)
-
-  gitee: [https://gitee.com/dwarfeng/snowflake-distributed-service](https://gitee.com/dwarfeng/snowflake-distributed-service)
-
-
 - com.dwarfeng:subgrade
 
   github: [https://github.com/DwArFeng/subgrade](https://github.com/DwArFeng/subgrade)
 
   gitee: [https://gitee.com/dwarfeng/subgrade](https://gitee.com/dwarfeng/subgrade)
-
-
-- com.dwarfeng:spring-terminator
-
-  github: [https://github.com/DwArFeng/spring-terminator](https://github.com/DwArFeng/spring-terminator)
-
-  gitee: [https://gitee.com/dwarfeng/spring-terminator](https://gitee.com/dwarfeng/spring-terminator)
 
 
 - com.dwarfeng:spring-telqos
@@ -98,11 +86,25 @@
   gitee: [https://gitee.com/dwarfeng/spring-telqos](https://gitee.com/dwarfeng/spring-telqos)
 
 
+- com.dwarfeng:spring-terminator
+
+  github: [https://github.com/DwArFeng/spring-terminator](https://github.com/DwArFeng/spring-terminator)
+
+  gitee: [https://gitee.com/dwarfeng/spring-terminator](https://gitee.com/dwarfeng/spring-terminator)
+
+
 - com.dwarfeng:dwarfeng-datamark
 
   github: [https://github.com/DwArFeng/dwarfeng-datamark](https://github.com/DwArFeng/dwarfeng-datamark)
 
   gitee: [https://gitee.com/dwarfeng/dwarfeng-datamark](https://gitee.com/dwarfeng/dwarfeng-datamark)
+
+
+- com.dwarfeng:snowflake-distributed-service
+
+  github: [https://github.com/DwArFeng/snowflake-distributed-service](https://github.com/DwArFeng/snowflake-distributed-service)
+
+  gitee: [https://gitee.com/dwarfeng/snowflake-distributed-service](https://gitee.com/dwarfeng/snowflake-distributed-service)
 
 ## 下载源码
 
@@ -133,7 +135,7 @@ mvn clean package
 找到打包后的目标文件
 
 ```
-voucher-node/target/voucher-node-${version}-release.tar.gz
+voucher-distribute/target/distribute/voucher-all-he/voucher-all-he-${version}-release.tar.gz
 ```
 
 如能找到该文件，则说明编译成功。
