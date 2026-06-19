@@ -62,17 +62,17 @@ Curator 连接配置。
 
 ```properties
 # 连接字符，即 zookeeper 地址。
-curator.connect.connect_string=your-host-here:2181
+com.dwarfeng.voucher.curator.connect.connect_string=your-host-here:2181
 # 会话超时时间。
-curator.connect.session_timeout=60000
+com.dwarfeng.voucher.curator.connect.session_timeout=60000
 # 连接超时时间。
-curator.connect.connection_timeout=15000
+com.dwarfeng.voucher.curator.connect.connection_timeout=15000
 # 第一次重试时的间隔时间，每重试一次，间隔时间都会指数增加，直到最大的间隔时间。
-curator.retry_policy.base_sleep_time=1000
+com.dwarfeng.voucher.curator.retry_policy.base_sleep_time=1000
 # 最大重试次数。
-curator.retry_policy.max_retries=10
+com.dwarfeng.voucher.curator.retry_policy.max_retries=10
 # 单次重试最大的间隔时间。
-curator.retry_policy.max_sleep=60000
+com.dwarfeng.voucher.curator.retry_policy.max_sleep=60000
 ```
 
 Curator 连接配置文件，包括 Zookeeper 连接地址，超时时间，重试策略。
@@ -83,7 +83,7 @@ Curator 互斥锁路径。
 
 ```properties
 # 清理作业的领导者锁存的路径。
-curator.latch_path.cleanup.leader_latch=/voucher/cleanup/leader_latch
+com.dwarfeng.voucher.curator.latch_path.cleanup.leader_latch=/voucher/cleanup/leader_latch
 ```
 
 如果您在本机上部署了多个项目，每个项目中都使用本服务，那么需要为每个项目配置不同的锁存路径，以避免项目之间不必要的互斥。
@@ -94,7 +94,7 @@ Curator 互斥锁路径前缀。
 
 ```properties
 # 设置凭证锁的路径的前缀。
-curator.mutex_prefix.voucher_lock=/voucher/voucher_lock/
+com.dwarfeng.voucher.curator.mutex_prefix.voucher_lock=/voucher/voucher_lock/
 ```
 
 如果您在本机上部署了多个项目，每个项目中都使用本服务，那么需要为每个项目配置不同的互斥锁路径前缀，以避免项目之间不必要的互斥。
@@ -111,11 +111,12 @@ curator.mutex_prefix.voucher_lock=/voucher/voucher_lock/
 数据库连接配置文件，除了标准的数据库配置四要素之外，还包括 Hibernate 的方言配置。
 
 ```properties
-jdbc.driver=com.mysql.cj.jdbc.Driver
-jdbc.url=jdbc:mysql://your-host-here:3306/voucher?serverTimezone=Asia/Shanghai&autoReconnect=true
-jdbc.username=root
-jdbc.password=your-password-here
-hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+com.dwarfeng.voucher.jdbc.driver=com.mysql.cj.jdbc.Driver
+com.dwarfeng.voucher.jdbc.url=\
+  jdbc:mysql://your-host-here:3306/voucher?serverTimezone=Asia/Shanghai&autoReconnect=true
+com.dwarfeng.voucher.jdbc.username=root
+com.dwarfeng.voucher.jdbc.password=your-password-here
+com.dwarfeng.voucher.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 ```
 
 ### performance.properties
@@ -124,13 +125,13 @@ hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 
 ```properties
 # 数据库的批量写入量，设置激进的值以提高数据库的写入效率。
-hibernate.jdbc.batch_size=100
+com.dwarfeng.voucher.hibernate.jdbc.batch_size=100
 # 数据库的批量抓取量，设置激进的值以提高数据库的读取效率。
-hibernate.jdbc.fetch_size=50
+com.dwarfeng.voucher.hibernate.jdbc.fetch_size=50
 # 连接池最大活动连接数量
-data_source.max_active=20
+com.dwarfeng.voucher.data_source.max_active=20
 # 连接池最小空闲连接数量
-data_source.min_idle=0
+com.dwarfeng.voucher.data_source.min_idle=0
 ```
 
 ## datamark 目录
@@ -153,11 +154,11 @@ data_source.min_idle=0
 ```properties
 #---------------------------------配置说明----------------------------------------
 # 数据标记资源的 URL，格式参考 Spring 资源路径。
-# datamark.xxx.resource_url=classpath:datamark/default.storage
+# com.dwarfeng.voucher.datamark.xxx.resource_url=classpath:datamark/default.storage
 # 数据标记资源的字符集。
-# datamark.xxx.resource_charset=UTF-8
+# com.dwarfeng.voucher.datamark.xxx.resource_charset=UTF-8
 # 数据标记服务是否允许更新。
-# datamark.xxx.update_allowed=true
+# com.dwarfeng.voucher.datamark.xxx.update_allowed=true
 #
 #---------------------------------VoucherCategory----------------------------------------
 # etc...
@@ -174,21 +175,21 @@ data_source.min_idle=0
 Dubbo 连接配置文件。
 
 ```properties
-dubbo.registry.zookeeper.address=zookeeper://your-host-here:2181
-dubbo.registry.zookeeper.timeout=3000
-dubbo.protocol.dubbo.port=20000
-dubbo.protocol.dubbo.host=your-host-here
-dubbo.provider.group=
-dubbo.consumer.snowflake.group=
+com.dwarfeng.voucher.dubbo.registry.zookeeper.address=zookeeper://your-host-here:2181
+com.dwarfeng.voucher.dubbo.registry.zookeeper.timeout=3000
+com.dwarfeng.voucher.dubbo.protocol.dubbo.port=20000
+com.dwarfeng.voucher.dubbo.protocol.dubbo.host=your-host-here
+com.dwarfeng.voucher.dubbo.provider.group=
+com.dwarfeng.voucher.dubbo.consumer.snowflake.group=
 ```
 
-其中，`dubbo.registry.zookeeper.address` 需要配置为 ZooKeeper 的地址，
-`dubbo.protocol.dubbo.host` 需要配置为本机的 IP 地址。
+其中，`com.dwarfeng.voucher.dubbo.registry.zookeeper.address` 需要配置为 ZooKeeper 的地址，
+`com.dwarfeng.voucher.dubbo.protocol.dubbo.host` 需要配置为本机的 IP 地址。
 
-如果您需要在本机启动多个 Voucher 实例，那么需要为每个实例配置不同的 `dubbo.protocol.dubbo.port`。
+如果您需要在本机启动多个 Voucher 实例，那么需要为每个实例配置不同的 `com.dwarfeng.voucher.dubbo.protocol.dubbo.port`。
 
-如果您在本机上部署了多个项目，每个项目中都使用了 Voucher，那么需要为每个项目配置不同的 `dubbo.provider.group`，
-以避免微服务错误的调用。
+如果您在本机上部署了多个项目，每个项目中都使用了 Voucher，
+那么需要为每个项目配置不同的 `com.dwarfeng.voucher.dubbo.provider.group`，以避免微服务错误的调用。
 
 ## logging 目录
 
@@ -259,12 +260,29 @@ Redis 连接配置文件。
 
 ```properties
 # ip 地址。
-redis.hostName=your-host-here
+com.dwarfeng.voucher.redis.hostName=your-host-here
 # 端口号。
-redis.port=6379
+com.dwarfeng.voucher.redis.port=6379
 # 如果有密码。
-redis.password=your-password-here
-# etc...
+com.dwarfeng.voucher.redis.password=your-password-here
+# 连接超时时间。
+com.dwarfeng.voucher.redis.timeout=10000
+# 最大空闲连接数。
+com.dwarfeng.voucher.redis.maxIdle=300
+# 最大连接数。
+com.dwarfeng.voucher.redis.maxTotal=1000
+# 最大等待时间。
+com.dwarfeng.voucher.redis.maxWaitMillis=1000
+# 连接的最小空闲时间。
+com.dwarfeng.voucher.redis.minEvictableIdleTimeMillis=300000
+# 每次空闲连接检查的连接数量。
+com.dwarfeng.voucher.redis.numTestsPerEvictionRun=1024
+# 空闲连接检查的时间间隔。
+com.dwarfeng.voucher.redis.timeBetweenEvictionRunsMillis=30000
+# 借出连接时是否检查。
+com.dwarfeng.voucher.redis.testOnBorrow=true
+# 空闲时是否检查。
+com.dwarfeng.voucher.redis.testWhileIdle=true
 ```
 
 ### prefix.properties
@@ -276,8 +294,17 @@ Redis 前缀配置文件。
 #  缓存时实体的键的格式
 #------------------------------------------------------------------------------------
 # 检查器信息对象的主键格式。
-cache.prefix.entity.checker_info=entity.checker_info.
-# etc...
+com.dwarfeng.voucher.cache.prefix.entity.checker_info=com.dwarfeng.voucher.entity.checker_info.
+# 检查器支持对象的主键格式。
+com.dwarfeng.voucher.cache.prefix.entity.checker_support=com.dwarfeng.voucher.entity.checker_support.
+# 凭证对象的主键格式。
+com.dwarfeng.voucher.cache.prefix.entity.voucher=com.dwarfeng.voucher.entity.voucher.
+# 凭证类别对象的主键格式。
+com.dwarfeng.voucher.cache.prefix.entity.voucher_category=com.dwarfeng.voucher.entity.voucher_category.
+# 凭证类别变量对象的主键格式。
+com.dwarfeng.voucher.cache.prefix.entity.voucher_category_variable=\
+# 凭证变量对象的主键格式。
+com.dwarfeng.voucher.cache.prefix.entity.voucher_variable=com.dwarfeng.voucher.entity.voucher_variable.
 ```
 
 Redis 利用该配置文件，为缓存的主键添加前缀，以示区分。
@@ -288,7 +315,7 @@ Redis 利用该配置文件，为缓存的主键添加前缀，以示区分。
 
 ```properties
 # 凭证对象的主键格式。
-cache.prefix.entity.voucher=voucher.entity.voucher.
+com.dwarfeng.voucher.cache.prefix.entity.voucher=voucher.com.dwarfeng.voucher.entity.voucher.
 # etc...
 ```
 
@@ -301,8 +328,17 @@ Redis 缓存的超时配置文件。
 #  实体缓存时的超时时间
 #------------------------------------------------------------------------------------
 # 检查器信息对象缓存的超时时间。
-cache.timeout.entity.checker_info=3600000
-# etc...
+com.dwarfeng.voucher.cache.timeout.entity.checker_info=3600000
+# 检查器支持对象缓存的超时时间。
+com.dwarfeng.voucher.cache.timeout.entity.checker_support=3600000
+# 凭证对象缓存的超时时间。
+com.dwarfeng.voucher.cache.timeout.entity.voucher=3600000
+# 凭证类别对象缓存的超时时间。
+com.dwarfeng.voucher.cache.timeout.entity.voucher_category=3600000
+# 凭证类别变量对象缓存的超时时间。
+com.dwarfeng.voucher.cache.timeout.entity.voucher_category_variable=3600000
+# 凭证变量对象缓存的超时时间。
+com.dwarfeng.voucher.cache.timeout.entity.voucher_variable=3600000
 ```
 
 如果您希望缓存更快或更慢地过期，您可以修改该配置文件。
@@ -319,21 +355,22 @@ Telqos 连接配置文件。
 
 ```properties
 # Telnet 端口。
-telqos.port=23
+com.dwarfeng.voucher.telqos.port=23
 # 字符集。
-telqos.charset=UTF-8
+com.dwarfeng.voucher.telqos.charset=UTF-8
 # 白名单表达式。
-telqos.whitelist_regex=
+com.dwarfeng.voucher.telqos.whitelist_regex=
 # 黑名单表达式。
-telqos.blacklist_regex=
+com.dwarfeng.voucher.telqos.blacklist_regex=
 ```
 
-如果您的项目中有多个包含 Telqos 模块的服务，您应该修改 `telqos.port` 的值，以避免端口冲突。
+如果您的项目中有多个包含 Telqos 模块的服务，您应该修改 `com.dwarfeng.voucher.telqos.port` 的值，以避免端口冲突。
 
-请根据操作系统的默认字符集，修改 `telqos.charset` 的值，以避免乱码。一般情况下，Windows 系统的默认字符集为 `GBK`，
-Linux 系统的默认字符集为 `UTF-8`。
+请根据操作系统的默认字符集，修改 `com.dwarfeng.voucher.telqos.charset` 的值，以避免乱码。
+一般情况下，Windows 系统的默认字符集为 `GBK`，Linux 系统的默认字符集为 `UTF-8`。
 
-如果您希望限制 Telqos 的使用范围，您可以修改 `telqos.whitelist_regex` 和 `telqos.blacklist_regex` 的值。
+如果您希望限制 Telqos 的使用范围，
+您可以修改 `com.dwarfeng.voucher.telqos.whitelist_regex` 和 `com.dwarfeng.voucher.telqos.blacklist_regex` 的值。
 
 ## voucher 目录
 
@@ -352,13 +389,13 @@ Linux 系统的默认字符集为 `UTF-8`。
 
 ```properties
 # 任务执行器的线程池数量范围。
-executor.pool_size=20-40
+com.dwarfeng.voucher.executor.pool_size=20-40
 # 任务执行器的队列容量。
-executor.queue_capacity=100
+com.dwarfeng.voucher.executor.queue_capacity=100
 # 任务执行器的保活时间（秒）。
-executor.keep_alive=120
+com.dwarfeng.voucher.executor.keep_alive=120
 # 计划执行器的线程池数量范围。
-scheduler.pool_size=10
+com.dwarfeng.voucher.scheduler.pool_size=10
 ```
 
 ### cleanup.properties
@@ -367,7 +404,7 @@ scheduler.pool_size=10
 
 ```properties
 # 清理作业执行的 CRON 表达式。
-cleanup.cron=0 15 0/15 * * *
+com.dwarfeng.voucher.cleanup.cron=0 15 0/15 * * *
 ```
 
 本配置用于指定清理作业的执行周期，您可以根据业务数据量与清理需求调整该 CRON 表达式。
@@ -378,13 +415,15 @@ ServiceException 的异常代码的偏移量配置。
 
 ```properties
 # voucher 工程自身的异常代号偏移量。
-voucher.exception_code_offset=5000
+com.dwarfeng.voucher.voucher.exception_code_offset=1000
 # voucher 工程中 subgrade 的异常代号偏移量。
-voucher.exception_code_offset.subgrade=0
-# voucher 工程中 snowflake 的异常代号偏移量。
-voucher.exception_code_offset.snowflake=1500
+com.dwarfeng.voucher.voucher.exception_code_offset.subgrade=0
+# voucher 工程中 spring-telqos 的异常代号偏移量。
+com.dwarfeng.voucher.voucher.exception_code_offset.spring_telqos=2000
+# voucher 工程中 spring-terminator 的异常代号偏移量。
+com.dwarfeng.voucher.voucher.exception_code_offset.spring_terminator=3000
 # voucher 工程中 dwarfeng-datamark 的异常代号偏移量。
-voucher.exception_code_offset.dwarfeng_datamark=2500
+com.dwarfeng.voucher.voucher.exception_code_offset.dwarfeng_datamark=4000
 ```
 
 Subgrade 框架中，会将微服务抛出的异常映射为 `ServiceException`，每个 `ServiceException` 都有一个异常代码，
@@ -399,24 +438,24 @@ Subgrade 框架中，会将微服务抛出的异常映射为 `ServiceException`�
 
 ```properties
 # 程序启动完成后，是否重置检查器支持。
-launcher.reset_checker_support=true
+com.dwarfeng.voucher.launcher.reset_checker_support=true
 #
 # 程序启动完成后，上线清理的延时时间。
 # 清理服务在启动后可能会需要一些时间进行自身的初始化，调整该参数以妥善的处理清理服务。
 # 该参数等于 0，意味着启动后立即上线清理服务。
 # 该参数小于 0，意味着程序不主动上线清理服务，需要手动上线。
-launcher.online_cleanup_delay=3000
+com.dwarfeng.voucher.launcher.online_cleanup_delay=3000
 # 程序启动完成后，启动清理的延时时间。
 # 清理服务在启动后可能会需要一些时间进行自身的初始化，调整该参数以妥善的处理清理服务。
 # 该参数等于 0，意味着启动后立即启动清理服务。
 # 该参数小于 0，意味着程序不主动启动清理服务，需要手动启动。
-launcher.enable_cleanup_delay=3500
+com.dwarfeng.voucher.launcher.enable_cleanup_delay=3500
 #
 # 程序启动完成后，启动重置的延时时间。
 # 有些重置器在启动后可能会需要一些时间进行自身的初始化，调整该参数以妥善的处理这些重置器。
 # 该参数等于 0，意味着启动后立即启动重置服务。
 # 该参数小于 0，意味着程序不主动启动重置服务，需要手动启动。
-launcher.start_reset_delay=30000
+com.dwarfeng.voucher.launcher.start_reset_delay=30000
 ```
 
 该配置文件决定了服务被运行后，哪些功能将会自动被执行。
@@ -441,7 +480,7 @@ launcher.start_reset_delay=30000
 # 对于一个具体的项目，很可能只用一个推送器。此时如果希望程序加载时只加载一个推送器，可以通过编辑
 # opt/opt-push.xml 文件实现。
 # 可以通过编辑 application-context-scan.xml 实现。
-pusher.type=drain
+com.dwarfeng.voucher.pusher.type=drain
 #
 ###################################################
 #                      drain                      #
@@ -452,20 +491,33 @@ pusher.type=drain
 #                      multi                      #
 ###################################################
 # 代理的推送器，推送器之间以逗号分隔。
-pusher.multi.delegate_types=kafka.native
+com.dwarfeng.voucher.pusher.multi.delegate_types=kafka.native
 #
 ###################################################
 #                   kafka.native                  #
 ###################################################
 # 引导服务器集群。
-pusher.kafka.native.bootstrap_servers=your-ip1:9092,your-ip2:9092,your-ip3:9092
-# etc...
+com.dwarfeng.voucher.pusher.kafka.native.bootstrap_servers=your-ip1:9092,your-ip2:9092,your-ip3:9092
+# ACK 确认模式。
+com.dwarfeng.voucher.pusher.kafka.native.acks=all
+# 重试次数。
+com.dwarfeng.voucher.pusher.kafka.native.retries=3
+# 发送延迟时间。
+com.dwarfeng.voucher.pusher.kafka.native.linger=10
+# 缓冲区内存大小。
+com.dwarfeng.voucher.pusher.kafka.native.buffer_memory=40960
+# 批量发送大小。
+com.dwarfeng.voucher.pusher.kafka.native.batch_size=4096
+# 事务前缀。
+com.dwarfeng.voucher.pusher.kafka.native.transaction_prefix=voucher.pusher.
+# 检查重置主题。
+com.dwarfeng.voucher.pusher.kafka.native.topic.check_reset=voucher.pusher.filtered_updated
 #
 ###################################################
 #                       log                       #
 ###################################################
 # 记录日志的等级，由低到高依次是 TRACE, DEBUG, INFO, WARN, ERROR。
-pusher.log.log_level=INFO
+com.dwarfeng.voucher.pusher.log.log_level=INFO
 ```
 
 您不必对所有的配置项进行配置。
@@ -486,19 +538,19 @@ pusher.log.log_level=INFO
 #                   fixed_delay                   #
 ###################################################
 # 重置的间隔。
-resetter.fixed_delay.delay=43200000
+com.dwarfeng.voucher.resetter.fixed_delay.delay=43200000
 #
 ###################################################
 #                   fixed_rate                    #
 ###################################################
 # 重置的间隔。
-resetter.fixed_rate.rate=43200000
+com.dwarfeng.voucher.resetter.fixed_rate.rate=43200000
 #
 ###################################################
 #                      cron                       #
 ###################################################
 # 执行重置的 CRON 表达式。
-resetter.cron.cron=0 0 1 * * *
+com.dwarfeng.voucher.resetter.cron.cron=0 0 1 * * *
 #
 ###################################################
 #                      dubbo                      #
